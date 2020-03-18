@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import TasksContainer from './containers/TasksContainer.js'
 
