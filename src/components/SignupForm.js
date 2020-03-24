@@ -1,15 +1,25 @@
 import React from 'react';
 
 class SignupForm extends React.Component {
+
+    state= {
+        emailAddress: "",
+        username: "",
+        password: "",
+        passwordConfirm: ""
+    }
+    
     render(){
         return(
             <div id="signup-form">
                 <form>
-                    <input type="text" name="Enter your Email Address"/>
+                    <input type="text" name="emailAddress" placeholder="Enter your Email Address"/>
                     <br/>
-                    <input type="text" name="Select a Username"/>
+                    <input type="text" name="username" placeholder="Select a Username"/>
                     <br/>
-                    <input type="password" name="Enter a Password"/>
+                    <input type="password" name="password" placeholder="Enter a Password"/>
+                    <br/>
+                    <input type="password" name="passwordConfirm" placeholder="Confirm Password"/>
                     <br/>
                     <input type="submit" value="Sign Up"/>
                 </form>
@@ -17,5 +27,4 @@ class SignupForm extends React.Component {
         )
     }
 }
-
 export default SignupForm
