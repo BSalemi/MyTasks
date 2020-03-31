@@ -15,7 +15,7 @@ class SignupForm extends React.Component {
                 <form>
                     <input type="text" name="emailAddress" placeholder="Enter your Email Address"/>
                     <br/>
-                    <input type="text" name="username" placeholder="Select a Username"/>
+                    <input type="text" name="username" placeholder="Choose a Username"/>
                     <br/>
                     <input type="password" name="password" placeholder="Enter a Password"/>
                     <br/>

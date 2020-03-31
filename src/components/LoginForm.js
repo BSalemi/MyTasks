@@ -5,9 +5,9 @@ class LoginForm extends React.Component{
         return(
             <div id="login-form">
                 <form>
-                    <input type="text" name="Enter your Username"/>
+                    <input type="text" name="username" placeholder="Enter your Username"/>
                     <br/>
-                    <input type="password" name="Enter your Password"/>
+                    <input type="password" name="password" placeholder="Enter your Password"/>
                     <input type="submit" value="Login"/>
                 </form>
             </div>
