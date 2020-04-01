@@ -1,4 +1,5 @@
 import React from 'react';
+import USERS_URL from '../constants.js'
 
 class SignupForm extends React.Component {
 
@@ -14,11 +15,33 @@ class SignupForm extends React.Component {
             [event.target.name]: event.target.value
         })
     }
-    
+
+    handleOnSubmit = event => {
+        event.preventDefault();
+        const user = {
+            emailAddress: this.state.emailAddress,
+            username: this.state.username,
+            password: this.state.password,
+            passwordConfirm: this.state.passwordConfirm
+        };
+        fetch(USERS_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then((user_data) => {
+            console.log(user_data)
+        })
+    }
+
     render(){
         return(
             <div id="signup-form">
-                <form>
+                <form onSubmit={event => this.handleOnSubmit(event)}>
                     <input type="text" name="emailAddress" placeholder="Enter your Email Address" value={this.state.emailAddress} onChange={event => this.handleOnChange(event)}/>
                     <br/>
                     <input type="text" name="username" placeholder="Choose a Username" value={this.state.username} onChange={event => this.handleOnChange(event)}/>
