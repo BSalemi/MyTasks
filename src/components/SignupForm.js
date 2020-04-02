@@ -34,7 +34,9 @@ class SignupForm extends React.Component {
         })
         .then(res => res.json())
         .then((user_data) => {
-            console.log(user_data)
+            localStorage.loggedIn = user_data.id 
+            this.props.updateLoggedInUser(user_data)
+
         })
     }
 
@@ -42,7 +44,7 @@ class SignupForm extends React.Component {
         return(
             <div id="signup-form">
                 <form onSubmit={event => this.handleOnSubmit(event)}>
-                    <input type="text" name="emailAddress" placeholder="Enter your Email Address" value={this.state.emailAddress} onChange={event => this.handleOnChange(event)}/>
+                    <input type="email" name="emailAddress" placeholder="Enter your Email Address" value={this.state.emailAddress} onChange={event => this.handleOnChange(event)}/>
                     <br/>
                     <input type="text" name="username" placeholder="Choose a Username" value={this.state.username} onChange={event => this.handleOnChange(event)}/>
                     <br/>
