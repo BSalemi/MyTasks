@@ -15,10 +15,13 @@ class TaskForm extends React.Component{
     render(){
         return(
             <div id="task-form">
-                <form>
-                    <input type="text" name="What do you have to do?" value={this.state.task} onChange={event => this.handleOnChange(event)}/>
-                    <input type="submit" value="Add to List"/>
-                </form>
+                {localStorage.loggedIn ? 
+                    <form>
+                        <input type="text" name="What do you have to do?" value={this.state.task} onChange={event => this.handleOnChange(event)}/>
+                        <input type="submit" value="Add to List"/>
+                    </form>
+                : null 
+                }    
             </div>
         )
     }

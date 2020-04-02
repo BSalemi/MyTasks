@@ -16,6 +16,7 @@ class App extends React.Component{
   }
 
   render(){
+    console.log(this.state, "state")
     return(
       <div id="app">
         <TasksContainer/>
