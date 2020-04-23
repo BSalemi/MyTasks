@@ -9,9 +9,9 @@ class App extends React.Component{
     loggedInUser: null
   }
 
-  updateLoggedInUser = (user) => {
+  updateLoggedInUser = (id) => {
     this.setState({
-      loggedInUser: user
+      loggedInUser: id
     })
   }
 

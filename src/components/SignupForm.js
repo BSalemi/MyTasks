@@ -33,15 +33,14 @@ class SignupForm extends React.Component {
             body: JSON.stringify(user)
         })
         .then(res => res.json())
-        .then((user_data) => {
-            localStorage.loggedIn = user_data.id 
-            this.props.updateLoggedInUser(user_data)
+        .then((userData) => {
+            localStorage.loggedIn = userData.id 
+            this.props.updateLoggedInUser(localStorage.loggedIn)
 
         })
     }
 
     render(){
-        console.log(localStorage.loggedIn, "loggedIn")
         return(
             <div id="signup-form">
                 {localStorage.loggedIn ? null : 

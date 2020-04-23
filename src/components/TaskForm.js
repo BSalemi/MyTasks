@@ -1,4 +1,5 @@
 import React from 'react';
+import {TASK_URL} from '../constants.js'
 
 class TaskForm extends React.Component{
 
@@ -6,10 +7,16 @@ class TaskForm extends React.Component{
         task: ""
     }
 
+
     handleOnChange = (event) => {
         this.setState({
             task: event.target.value
         })
+    }
+
+    handleOnSubmit = (event) => {
+        event.preventDefault();
+        
     }
 
     render(){
