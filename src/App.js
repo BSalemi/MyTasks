@@ -23,13 +23,14 @@ class App extends React.Component{
       ...this.state,
       tasks: [...this.state.tasks, task]
     })
+    return this.state
   }
 
   render(){
     console.log(this.state.tasks, "tasks")
     return(
       <div id="app">
-        <TasksContainer addTask={this.addTask}/>
+        <TasksContainer addTask={this.addTask} />
         <UserContainer updateLoggedInUser={this.updateLoggedInUser}/>
       </div>
     )

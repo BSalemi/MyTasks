@@ -15,7 +15,11 @@ class TaskForm extends React.Component{
 
     handleOnSubmit = (event) => {
         event.preventDefault();
-        const task = this.state.task
+        
+        const task = {
+            to_do: this.state.task,
+            user_id: localStorage.loggedIn
+        };
 
         fetch(TASKS_URL,{ 
             method: 'POST',
@@ -27,7 +31,7 @@ class TaskForm extends React.Component{
         })
         .then(res => res.json())
         .then((newTask) => {
-            this.props.addTask(newTask)
+            console.log(newTask)
     }) 
 }
 
@@ -35,7 +39,7 @@ class TaskForm extends React.Component{
         return(
             <div id="task-form">
                 {localStorage.loggedIn ? 
-                    <form>
+                    <form onSubmit={event => this.handleOnSubmit(event)}>
                         <input type="text" name="What do you have to do?" value={this.state.task} onChange={event => this.handleOnChange(event)}/>
                         <input type="submit" value="Add to List"/>
                     </form>
