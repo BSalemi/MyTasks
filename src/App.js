@@ -3,10 +3,13 @@ import './App.css';
 import TasksContainer from './containers/TasksContainer.js'
 import UserContainer from './containers/UserContainer.js'
 
+
+
 class App extends React.Component{
 
   state = {
-    loggedInUser: null
+    loggedInUser: null,
+    tasks: []
   }
 
   updateLoggedInUser = (id) => {
@@ -15,11 +18,18 @@ class App extends React.Component{
     })
   }
 
+  addTask = (task) => {
+    this.setState({
+      ...this.state,
+      tasks: [...this.state.tasks, task]
+    })
+  }
+
   render(){
-    console.log(this.state, "state")
+    console.log(this.state.tasks, "tasks")
     return(
       <div id="app">
-        <TasksContainer/>
+        <TasksContainer addTask={this.addTask}/>
         <UserContainer updateLoggedInUser={this.updateLoggedInUser}/>
       </div>
     )

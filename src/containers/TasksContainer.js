@@ -5,7 +5,7 @@ class TasksContainer extends React.Component {
     render(){
         return(
             <div id="tasks-container">
-                <TaskForm/>
+                <TaskForm addTask={this.props.addTask}/>
             </div>
         )
     }

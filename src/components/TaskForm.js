@@ -1,12 +1,11 @@
 import React from 'react';
-import {TASK_URL} from '../constants.js'
+import {TASKS_URL} from '../constants.js'
 
 class TaskForm extends React.Component{
 
     state = {
         task: ""
     }
-
 
     handleOnChange = (event) => {
         this.setState({
@@ -16,8 +15,21 @@ class TaskForm extends React.Component{
 
     handleOnSubmit = (event) => {
         event.preventDefault();
-        
-    }
+        const task = this.state.task
+
+        fetch(TASKS_URL,{ 
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(task)
+        })
+        .then(res => res.json())
+        .then((newTask) => {
+            this.props.addTask(newTask)
+    }) 
+}
 
     render(){
         return(

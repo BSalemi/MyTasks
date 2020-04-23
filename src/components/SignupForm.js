@@ -1,5 +1,5 @@
 import React from 'react';
-import USERS_URL from '../constants.js'
+import { USERS_URL } from '../constants.js'
 
 class SignupForm extends React.Component {
 
