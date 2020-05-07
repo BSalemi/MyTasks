@@ -26,11 +26,10 @@ class App extends React.Component{
   }
 
   render(){
-    console.log(this.state.tasks, "tasks")
     return(
       <div id="app" className="tc">
         <h1 className="f1"> My Tasks</h1>
-          <TasksContainer addTask={this.addTask} />
+          <TasksContainer addTask={this.addTask} currentUser={this.state.loggedInUser}/>
           <UserContainer updateLoggedInUser={this.updateLoggedInUser}/>
       </div>
     )
