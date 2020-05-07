@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import TasksContainer from './containers/TasksContainer.js'
 import UserContainer from './containers/UserContainer.js'
 
@@ -29,9 +28,10 @@ class App extends React.Component{
   render(){
     console.log(this.state.tasks, "tasks")
     return(
-      <div id="app">
-        <TasksContainer addTask={this.addTask} />
-        <UserContainer updateLoggedInUser={this.updateLoggedInUser}/>
+      <div id="app" className="tc">
+        <h1 className="f1"> My Tasks</h1>
+          <TasksContainer addTask={this.addTask} />
+          <UserContainer updateLoggedInUser={this.updateLoggedInUser}/>
       </div>
     )
   }
