@@ -9,7 +9,7 @@ class UserContainer extends React.Component{
         return(
             <div id="user-container">
                 <SignupForm updateLoggedInUser={this.props.updateLoggedInUser}/>
-                <LoginForm/>
+                <LoginForm updateLoggedInUser={this.props.updateLoggedInUser}/>
             </div>
         )
     }

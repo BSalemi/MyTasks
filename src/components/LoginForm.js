@@ -1,4 +1,5 @@
 import React from 'react';
+import {USERS_URL} from '../constants.js'
 
 class LoginForm extends React.Component{
 
@@ -13,11 +14,38 @@ class LoginForm extends React.Component{
         })
     }
 
+    logInUser = (event) => {
+        event.preventDefault()
+
+        let user = {
+            username: this.state.username,
+            password: this.state.password
+        };
+
+        fetch(USERS_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then((userId) => {
+            if(userId){ 
+                localStorage.loggedIn = userId
+            } else {
+                return "Username or Password is Incorrect."
+            }
+            
+        })
+    }
+
     render(){
         return(
             <div id="login-form">
-                {localStorage.loggedIn ? null : 
-                    <form>
+                {localStorage.loggedIn !== "undefined" ? null : 
+                    <form onSubmit={event => this.logInUser(event)}>
                         <input type="text" name="username" placeholder="Enter your Username" value={this.state.username} onChange={event => this.handleOnChange(event)}/>
                         <br/>
                         <input type="password" name="password" placeholder="Enter your Password" value={this.state.password} onChange={event => this.handleOnChange(event)}/>

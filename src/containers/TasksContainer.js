@@ -5,7 +5,7 @@ import { TASKS_URL } from '../constants.js'
 class TasksContainer extends React.Component {
 
     state = {
-        currentUser: this.props.currentUser,
+        currentUser: localStorage.loggedIn,
         tasks: []
     }
 
@@ -13,11 +13,21 @@ class TasksContainer extends React.Component {
         this.fetchTasks()
     }
 
+    addTask = (task) => {
+        this.setState({
+          ...this.state,
+          tasks: [...this.state.tasks, task]
+        })
+        return this.state.tasks
+      }
+    
+
     fetchTasks = () => {
 
         fetch(TASKS_URL)
         .then(res => res.json())
-        .then(fetchedTasks => this.setState({
+        .then(fetchedTasks => console.log(fetchedTasks, "fetched tasks"),
+            this.setState({
             ...this.state,
             tasks: [this.state.fetchedTasks]
         }))
@@ -27,7 +37,7 @@ class TasksContainer extends React.Component {
     render(){
         return(
             <div id="tasks-container">
-                <TaskForm addTask={this.props.addTask} currentUser={this.state.currentUser} tasks={this.state.tasks}/>
+                <TaskForm addTask={this.addTask} tasks={this.state.tasks}/>
             </div>
         )
     }
