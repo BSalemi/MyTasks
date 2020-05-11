@@ -31,7 +31,7 @@ class TaskForm extends React.Component{
         })
         .then(res => res.json())
         .then((newTask) => {
-            console.log(newTask)
+            console.log(newTask, "new task")
     }) 
 }
 
