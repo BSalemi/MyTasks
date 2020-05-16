@@ -1,5 +1,6 @@
 import React from 'react';
 import TaskForm from '../components/TaskForm.js'
+import Tasks from '../components/Tasks.js'
 import { TASKS_URL } from '../constants.js'
 
 class TasksContainer extends React.Component {
@@ -39,6 +40,7 @@ class TasksContainer extends React.Component {
         return(
             <div id="tasks-container">
                 <TaskForm addTask={this.addTask} tasks={this.state.tasks}/>
+                <Tasks tasks={this.state.tasks}/>
             </div>
         )
     }
