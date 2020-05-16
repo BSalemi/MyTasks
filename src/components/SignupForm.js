@@ -46,7 +46,7 @@ class SignupForm extends React.Component {
     render(){
         return(
             <div id="signup-form">
-                {!localStorage.loggedIn ? null : 
+                {localStorage.loggedIn !== "undefined" ? null :
                     <form onSubmit={event => this.handleOnSubmit(event)} className="pa2 ba br1">
                         <input type="email" name="emailAddress" placeholder="Enter your Email Address" value={this.state.emailAddress} onChange={event => this.handleOnChange(event)}/>
                         <br/>

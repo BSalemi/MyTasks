@@ -34,11 +34,13 @@ class LoginForm extends React.Component{
         .then((userId) => {
             if(userId){ 
                 localStorage.loggedIn = userId
+                this.props.history.push("/")
             } else {
                 return "Username or Password is Incorrect."
             }
             
         })
+
     }
 
     render(){
