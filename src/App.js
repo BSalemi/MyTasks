@@ -11,7 +11,6 @@ class App extends React.Component{
 
   state = {
     loggedInUser: null,
-    tasks: []
   }
 
   updateLoggedInUser = (id) => {
@@ -20,20 +19,13 @@ class App extends React.Component{
     })
   }
 
-  addTask = (task) => {
-
-    this.setState({
-      ...this.state,
-      tasks: [...this.state.tasks, task]
-    })
-  }
-
+  
   render(){
-    console.log(localStorage.loggedIn, "loggedIn")
+
     return(
       <div id="app" className="tc">
         <h1 className="f1"> My Tasks</h1>
-          <TasksContainer currentUser={this.state.loggedInUser} addTask={this.addTask}/>
+          <TasksContainer currentUser={this.state.loggedInUser} />
           <UserContainer updateLoggedInUser={this.updateLoggedInUser}/>
           <Route exact path="/login" component={LoginForm} />
           <Route exact path="/signup" component={SignupForm}/>

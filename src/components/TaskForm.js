@@ -31,12 +31,14 @@ class TaskForm extends React.Component{
         })
         .then(res => res.json())
         .then((newTask) => {
-            console.log(newTask, "new task")
+            this.props.addTask(newTask);
     }) 
+    this.setState({
+        task: ""
+    })
 }
 
     render(){
-        console.log(this.props, "props in")
         return(
             <div id="task-form">
                 {localStorage.loggedIn !== "undefined" ? 

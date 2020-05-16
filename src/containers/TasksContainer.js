@@ -26,15 +26,16 @@ class TasksContainer extends React.Component {
 
         fetch(TASKS_URL)
         .then(res => res.json())
-        .then(fetchedTasks => console.log(fetchedTasks, "fetched tasks"),
+        .then(fetchedTasks =>
             this.setState({
             ...this.state,
-            tasks: [this.state.fetchedTasks]
+            tasks: fetchedTasks
         }))
     }
 
 
     render(){
+        
         return(
             <div id="tasks-container">
                 <TaskForm addTask={this.addTask} tasks={this.state.tasks}/>
