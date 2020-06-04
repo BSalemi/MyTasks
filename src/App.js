@@ -25,7 +25,7 @@ class App extends React.Component{
 
     return(
       <div id="app" className="tc">
-        <h1 className="f1"> My Tasks</h1>
+        <h1 id="logo" className="f1"> My Tasks</h1>
           <Clock/>
           <TasksContainer currentUser={this.state.loggedInUser} />
           <UserContainer updateLoggedInUser={this.updateLoggedInUser}/>

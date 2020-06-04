@@ -12,3 +12,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+body {
+  background-color: #121212;
+}
+
+#clock {
+  font-family: 'Orbitron', sans-serif;
+  color: #a463f2;
+  font-size: 40px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#logo{
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bolder
+}
