@@ -3,16 +3,20 @@ import React from 'react';
 class Clock extends React.Component {
 
     currentTime = () => {
-        let date = new Date();
-        let hour = date.getHours();
-        let min = date.getMinutes();
-        let sec = date.getSeconds();
+        let date = new Date(),
+            hour = date.getHours(),
+            min = date.getMinutes(),
+            sec = date.getSeconds(),
+            midday = "AM",
 
         hour = this.updateTime(hour);
         min = this.updateTime(min);
         sec = this.updateTime(sec);
 
-        document.getElementById("clock").innerText = hour + " : " + min + " : " + sec;
+        
+        midday = (hour >= 12) ? "PM" : "AM";
+
+        document.getElementById("clock").innerText = hour + " : " + min + " : " + sec + midday;
 
         let t = setTimeout(function(){ currentTime() }, 1000);
     }
@@ -28,7 +32,7 @@ class Clock extends React.Component {
     render(){
         return(
             <div id="clock">
-
+                {this.currentTime()}
             </div>
         )
     }
