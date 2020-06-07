@@ -33,7 +33,7 @@ class Clock extends React.Component {
             sec = fullTime(sec);
 
             this.setState({
-                time: month + '/' + day + '/' + year + ' - ' + hour % 12 + ":" + min + ":" + sec + ":" + ampm
+                time: `${month}/${day}/${year} - ${hour % 12}:${min}:${sec}:${ampm}`
             });
             function fullTime(n) { return n < 10 ? "0" + n : n }
         }, 1000);

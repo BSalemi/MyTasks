@@ -12,7 +12,7 @@ class Tasks extends React.Component{
     }
 
     render(){
-        console.log(this.props, "props in Tasks")
+        
         return(
             <div id="tasks">
                 {this.generateTasks()}
