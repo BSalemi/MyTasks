@@ -6,5 +6,5 @@ export const TASKS_URL = `${BASE_URL}/tasks`
 
 export const COMPLETED_URL = `${BASE_URL}/complete`
 
-// export const UNDO_URL = `${TASKS_URL}/undo`
+export const UNDO_URL = `${TASKS_URL}/undo`
 

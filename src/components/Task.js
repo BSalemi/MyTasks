@@ -1,5 +1,5 @@
 import React from 'react';
-import {COMPLETED_URL} from '../constants.js'
+import {COMPLETED_URL, UNDO_URL} from '../constants.js'
 
 class Task extends React.Component{
 
@@ -28,8 +28,28 @@ class Task extends React.Component{
         })
     }
 
-    undoComplete = () => {
+    undoComplete = (event) => {
+        event.preventDefault();
+        let id = event.target.value,
+            grandparent = event.target.parentElement.parentElement,
+            task = grandparent.children[0]
 
+        fetch(UNDO_URL, {
+            method:'PUT',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                id: id
+            }),
+        })
+        .then((res) => {
+            if (!res.ok){
+                throw new Error('Something went wrong')
+            }
+            task.id = null
+        })
     }
 
     render(){
@@ -40,7 +60,7 @@ class Task extends React.Component{
         return(
             <div id="task" className={taskStyling}>
 
-                <h2 id="task-header">
+                <h2>
                     {toDo}
                 </h2>
                 <p>
