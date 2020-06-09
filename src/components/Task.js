@@ -30,9 +30,9 @@ class Task extends React.Component{
 
     undoComplete = (event) => {
         event.preventDefault();
-        let id = event.target.value,
-            grandparent = event.target.parentElement.parentElement,
-            task = grandparent.children[0]
+        let id = event.target.value;
+            // grandparent = event.target.parentElement.parentElement,
+            // task = grandparent.children[0]
 
         fetch(UNDO_URL, {
             method:'PUT',
@@ -48,7 +48,6 @@ class Task extends React.Component{
             if (!res.ok){
                 throw new Error('Something went wrong')
             }
-            task.id = null
         })
     }
 
@@ -60,7 +59,7 @@ class Task extends React.Component{
         return(
             <div id="task" className={taskStyling}>
 
-                <h2>
+                <h2 className={this.props.completed && "completed"}>
                     {toDo}
                 </h2>
                 <p>

@@ -22,6 +22,20 @@ class TasksContainer extends React.Component {
         return this.state.tasks
       }
     
+      updateTask = (updatedTask) => {
+          let filteredTasks = this.state.tasks.filter(task => task.id !== updatedTask.id);
+
+          filteredTasks.push(updatedTask);
+
+          this.setState({
+              ...this.state,
+              tasks:[filteredTasks]
+          })
+      }
+      //updateTask
+      //filter state tasks to find task with same id
+      //set that filtered task equal to the newly updated task
+      //push that updated task back into state
 
     fetchTasks = () => {
 
@@ -40,7 +54,7 @@ class TasksContainer extends React.Component {
         return(
             <div id="tasks-container">
                 <TaskForm addTask={this.addTask} tasks={this.state.tasks}/>
-                <Tasks tasks={this.state.tasks}/>
+                <Tasks tasks={this.state.tasks} updateTask={this.updateTask}/>
             </div>
         )
     }
