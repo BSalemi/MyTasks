@@ -8,3 +8,4 @@ export const COMPLETED_URL = `${BASE_URL}/complete`
 
 export const UNDO_URL = `${BASE_URL}/undo`
 
+export const taskStyling = "tc bg-light-purple dib br3 pa3 ma2 grow bw2 shadow-5"

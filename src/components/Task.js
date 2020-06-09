@@ -5,10 +5,7 @@ class Task extends React.Component{
 
     completeTask = (event) => {
         event.preventDefault();
-        let id = event.target.value,
-            grandparent = event.target.parentElement.parentElement,
-            task = grandparent.children[0]
-       
+        let id = event.target.value;
 
         fetch(COMPLETED_URL, {
             method:'PUT',
@@ -20,20 +17,16 @@ class Task extends React.Component{
                 id: id
             }),
         })
-        .then((res) => {
-            if (!res.ok){
-                throw new Error('Something went wrong')
-            }
-            task.id = "completed"
+        .then(res => res.json())
+        .then(task => {
+            console.log(task, "task after promise")
+           this.props.updateTask(task)
         })
     }
 
     undoComplete = (event) => {
         event.preventDefault();
         let id = event.target.value;
-            // grandparent = event.target.parentElement.parentElement,
-            // task = grandparent.children[0]
-
         fetch(UNDO_URL, {
             method:'PUT',
             headers: {
@@ -44,11 +37,11 @@ class Task extends React.Component{
                 id: id
             }),
         })
-        .then((res) => {
-            if (!res.ok){
-                throw new Error('Something went wrong')
-            }
-        })
+        .then(res => res.json())
+        .then(task => {
+            console.log(task, "task after promise")
+            this.props.updateTask(task)
+         })
     }
 
     render(){
@@ -57,9 +50,8 @@ class Task extends React.Component{
         const buttonStyle = "tc pa1 ma1 br-pill bw"
 
         return(
-            <div id="task" className={taskStyling}>
-
-                <h2 className={this.props.completed && "completed"}>
+            <div className={taskStyling}>
+                <h2 className={this.props.completed ? "completedTask" : undefined}>
                     {toDo}
                 </h2>
                 <p>

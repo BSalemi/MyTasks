@@ -6,13 +6,13 @@ class Tasks extends React.Component{
 
     generateTasks = () => {
         const tasksCards = this.props.tasks.map(task => {
-            return <Task key={task.id} id={task.id} toDo={task.to_do} completed={task.completed}/>
+            return <Task key={task.id} id={task.id} toDo={task.to_do} completed={task.completed} updateTask={this.props.updateTask}/>
         })
         return tasksCards
     }
 
     render(){
-        
+        console.log(this.props.updateTask, "task update")
         return(
             <div id="tasks">
                 {this.generateTasks()}

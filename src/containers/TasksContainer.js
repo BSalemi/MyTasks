@@ -23,13 +23,25 @@ class TasksContainer extends React.Component {
       }
     
       updateTask = (updatedTask) => {
-          let filteredTasks = this.state.tasks.filter(task => task.id !== updatedTask.id);
+          let updatedTasks = this.state.tasks.map(task => {
+              if(task.id === updatedTask.id){
+                  if(task.completed){
+                      task.completed = false;
+                      return task
+                  } else {
+                      task.completed = true;
+                      return task
+                  }
+              } else {
+                  return task
+              }
+            });
 
-          filteredTasks.push(updatedTask);
+            console.log(updatedTasks, "updatedTasks")
 
           this.setState({
               ...this.state,
-              tasks:[filteredTasks]
+              tasks: updatedTasks
           })
       }
       //updateTask
@@ -50,7 +62,7 @@ class TasksContainer extends React.Component {
 
 
     render(){
-        
+        console.log(this.state.tasks, "tasks")
         return(
             <div id="tasks-container">
                 <TaskForm addTask={this.addTask} tasks={this.state.tasks}/>
