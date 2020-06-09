@@ -4,12 +4,11 @@ import {COMPLETED_URL} from '../constants.js'
 class Task extends React.Component{
 
     completeTask = (event) => {
-
         event.preventDefault();
-        let id = event.target.value
-        console.log(id, "id")
-        let task = document.getElementById("task-header")
-        console.log(task, "task")
+        let id = event.target.value,
+            grandparent = event.target.parentElement.parentElement,
+            task = grandparent.children[0]
+       
 
         fetch(COMPLETED_URL, {
             method:'PUT',
