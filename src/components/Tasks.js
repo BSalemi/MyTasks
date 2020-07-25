@@ -12,7 +12,6 @@ class Tasks extends React.Component{
     }
 
     render(){
-        console.log(this.props.updateTask, "task update")
         return(
             <div id="tasks">
                 {this.generateTasks()}

@@ -16,12 +16,11 @@ class TaskForm extends React.Component{
 
     handleOnSubmit = (event) => {
         event.preventDefault();
-        
+
         const task = {
             to_do: this.state.task,
             user_id: localStorage.loggedIn
         };
-        trackPromise(
             fetch(TASKS_URL,{ 
                 method: 'POST',
                 headers: {
@@ -34,7 +33,6 @@ class TaskForm extends React.Component{
             .then((newTask) => {
                 this.props.addTask(newTask);
             }) 
-        )
         this.setState({
             task: ""
         })

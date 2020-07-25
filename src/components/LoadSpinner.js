@@ -6,12 +6,7 @@ export const LoadSpinner = (props) => {
 
     return(
         <div>
-            {
-                (promiseInProgress === true) ?
-                    console.log("Hey I'm testing my loading indicator!")
-                :
-                    null
-            }
-        </div>
+        <i className="fa fa-spinner fa-spin" /> Loading...
+      </div>
     )
 } ;

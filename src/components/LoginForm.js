@@ -46,7 +46,7 @@ class LoginForm extends React.Component{
     render(){
         return(
             <div id="login-form">
-                {localStorage.loggedIn !== "undefined" ? null : 
+                {localStorage.loggedIn !== undefined ? null : 
                     <form onSubmit={event => this.logInUser(event)}>
                         <input type="text" name="username" placeholder="Enter your Username" value={this.state.username} onChange={event => this.handleOnChange(event)}/>
                         <br/>

@@ -3,16 +3,18 @@ import TaskForm from '../components/TaskForm.js';
 import Tasks from '../components/Tasks.js';
 import { TASKS_URL } from '../constants.js';
 import { LoadSpinner } from '../components/LoadSpinner.js'
+// import {trackPromise} from 'react-promise-tracker'
 
 class TasksContainer extends React.Component {
 
     state = {
         currentUser: localStorage.loggedIn,
-        tasks: []
+        tasks: [],
+        loading: false
     }
 
     componentDidMount(){
-            this.fetchTasks()
+        this.setState( {loading: true }, this.fetchTasks())
     }
 
     addTask = (task) => {
@@ -24,26 +26,25 @@ class TasksContainer extends React.Component {
       }
     
       updateTask = (updatedTask) => {
-          let updatedTasks = this.state.tasks.map(task => {
-              if(task.id === updatedTask.id){
-                  if(task.completed){
-                      task.completed = false;
-                      return task
-                  } else {
-                      task.completed = true;
-                      return task
-                  }
-              } else {
-                  return task
-              }
-            });
+        let updatedTasks = this.state.tasks.map(task => {
+            if(task.id === updatedTask.id){
+                if(task.completed){
+                    task.completed = false;
+                    return task
+                } else {
+                    task.completed = true;
+                    return task
+                }
+            } else {
+                return task
+            }
+        });
 
-            console.log(updatedTasks, "updatedTasks")
 
-          this.setState({
-              ...this.state,
-              tasks: updatedTasks
-          })
+        this.setState({
+            ...this.state,
+            tasks: updatedTasks
+        })
       }
       //updateTask
       //filter state tasks to find task with same id
@@ -57,18 +58,24 @@ class TasksContainer extends React.Component {
         .then(fetchedTasks =>
             this.setState({
             ...this.state,
+            loading: false,
             tasks: fetchedTasks
         }))
     }
 
 
     render(){
+        const { loading } = this.state;
         return(
-            <div id="tasks-container">
+            <>
+            {loading ? <LoadSpinner /> : 
+                <div id="tasks-container">
                 <TaskForm addTask={this.addTask} tasks={this.state.tasks}/>
                 <Tasks tasks={this.state.tasks} updateTask={this.updateTask}/>
-                <LoadSpinner/>
-            </div>
+                </div>
+            }
+            </>
+            
         )
     }
 }

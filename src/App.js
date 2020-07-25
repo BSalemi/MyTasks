@@ -22,15 +22,22 @@ class App extends React.Component{
 
   
   render(){
-
+    const { loggedInUser } = this.state;
     return(
       <div id="app" className="tc">
+
         <h1 id="logo" className="f1"> My Tasks</h1>
-          <Clock/>
-          <TasksContainer currentUser={this.state.loggedInUser} />
-          <UserContainer updateLoggedInUser={this.updateLoggedInUser}/>
-          <Route exact path="/login" component={LoginForm} />
-          <Route exact path="/signup" component={SignupForm}/>
+          {loggedInUser ? 
+            <>
+            <Clock/>
+            <TasksContainer currentUser={this.state.loggedInUser} /> 
+            </>
+          :  
+            <>
+            <UserContainer updateLoggedInUser={this.updateLoggedInUser}/>
+            <Route exact path="/login" component={LoginForm} />
+            <Route exact path="/signup" component={SignupForm}/>
+            </>}
       </div>
     )
   }

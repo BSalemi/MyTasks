@@ -19,7 +19,6 @@ class Task extends React.Component{
         })
         .then(res => res.json())
         .then(task => {
-            console.log(task, "task after promise")
            this.props.updateTask(task)
         })
     }
