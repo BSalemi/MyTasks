@@ -1,7 +1,8 @@
 import React from 'react';
-import TaskForm from '../components/TaskForm.js'
-import Tasks from '../components/Tasks.js'
-import { TASKS_URL } from '../constants.js'
+import TaskForm from '../components/TaskForm.js';
+import Tasks from '../components/Tasks.js';
+import { TASKS_URL } from '../constants.js';
+import { LoadSpinner } from '../components/LoadSpinner.js'
 
 class TasksContainer extends React.Component {
 
@@ -11,7 +12,7 @@ class TasksContainer extends React.Component {
     }
 
     componentDidMount(){
-        this.fetchTasks()
+            this.fetchTasks()
     }
 
     addTask = (task) => {
@@ -62,11 +63,11 @@ class TasksContainer extends React.Component {
 
 
     render(){
-        console.log(this.state.tasks, "tasks")
         return(
             <div id="tasks-container">
                 <TaskForm addTask={this.addTask} tasks={this.state.tasks}/>
                 <Tasks tasks={this.state.tasks} updateTask={this.updateTask}/>
+                <LoadSpinner/>
             </div>
         )
     }

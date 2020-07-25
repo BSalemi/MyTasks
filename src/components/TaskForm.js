@@ -1,5 +1,6 @@
 import React from 'react';
 import {TASKS_URL} from '../constants.js'
+import { trackPromise } from 'react-promise-tracker';
 
 class TaskForm extends React.Component{
 
@@ -20,23 +21,24 @@ class TaskForm extends React.Component{
             to_do: this.state.task,
             user_id: localStorage.loggedIn
         };
-
-        fetch(TASKS_URL,{ 
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            },
-            body: JSON.stringify(task)
+        trackPromise(
+            fetch(TASKS_URL,{ 
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                },
+                body: JSON.stringify(task)
+            })
+            .then(res => res.json())
+            .then((newTask) => {
+                this.props.addTask(newTask);
+            }) 
+        )
+        this.setState({
+            task: ""
         })
-        .then(res => res.json())
-        .then((newTask) => {
-            this.props.addTask(newTask);
-    }) 
-    this.setState({
-        task: ""
-    })
-}
+    }
 
     render(){
         return(
