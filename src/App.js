@@ -1,10 +1,10 @@
 import React from 'react';
 import TasksContainer from './containers/TasksContainer.js'
-import UserContainer from './containers/UserContainer.js'
-import LoginForm from './components/LoginForm'
-import SignupForm from './components/SignupForm'
 import Clock from './components/Clock'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import LoginForm from './components/LoginForm'
+import SignupForm from './components/SignupForm.js';
+import { BrowserRouter as Switch, Route, Link } from 'react-router-dom';
+
 
 
 
@@ -34,10 +34,14 @@ class App extends React.Component{
             </>
           :  
             <>
-            <UserContainer updateLoggedInUser={this.updateLoggedInUser}/>
-            <Route exact path="/login" component={LoginForm} />
-            <Route exact path="/signup" component={SignupForm}/>
+
+            {/* Find a way to hide the buttons when clicked. Change from component to render in Route tag and pass in props. Delete UserContainer component it is unnecessary. */}
+            <Route exact path="/login"  render={(routeProps)=> <LoginForm {...routeProps} updateLoggedInUser={this.updateLoggedInUser}/>}/>
+            <Route exact path="/signup" render={(routeProps)=> <SignupForm {...routeProps} updateLoggedInUser={this.updateLoggedInUser}/>}/>
+            <Link to="/login"><button>Log In</button></Link>
+            <Link to="/signup"><button>Sign Up</button></Link>
             </>}
+            
       </div>
     )
   }

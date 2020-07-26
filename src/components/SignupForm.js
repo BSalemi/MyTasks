@@ -46,8 +46,7 @@ class SignupForm extends React.Component {
     render(){
         return(
             <div id="signup-form">
-                {localStorage.loggedIn !== "undefined" ? null :
-                    <form onSubmit={event => this.handleOnSubmit(event)} className="pa2 ba br1">
+                    <form onSubmit={event => this.handleOnSubmit(event)} className="pa2">
                         <input type="email" name="emailAddress" placeholder="Enter your Email Address" value={this.state.emailAddress} onChange={event => this.handleOnChange(event)}/>
                         <br/>
                         <input type="text" name="username" placeholder="Choose a Username" value={this.state.username} onChange={event => this.handleOnChange(event)}/>
@@ -58,7 +57,6 @@ class SignupForm extends React.Component {
                         <br/>
                         <input type="submit" value="Sign Up" className="ma1"/>
                     </form>
-                }
             </div>
         )
     }
