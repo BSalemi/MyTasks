@@ -33,6 +33,6 @@ body {
   font-weight: bolder
 }
 
-#completedTask{
+.completedTask{
   text-decoration: line-through;
 }
