@@ -3,7 +3,7 @@ import TaskForm from '../components/TaskForm.js';
 import Tasks from '../components/Tasks.js';
 import { TASKS_URL } from '../constants.js';
 import { LoadSpinner } from '../components/LoadSpinner.js'
-// import {trackPromise} from 'react-promise-tracker'
+
 
 class TasksContainer extends React.Component {
 
@@ -71,7 +71,7 @@ class TasksContainer extends React.Component {
             {loading ? <LoadSpinner /> : 
                 <div id="tasks-container">
                 <TaskForm addTask={this.addTask} tasks={this.state.tasks}/>
-                <Tasks tasks={this.state.tasks} updateTask={this.updateTask}/>
+                <Tasks tasks={this.state.tasks} updateTask={this.updateTask} currentUser={this.state.currentUser}/>
                 </div>
             }
             </>

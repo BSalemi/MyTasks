@@ -4,10 +4,10 @@ import { USERS_URL } from '../constants.js'
 class SignupForm extends React.Component {
 
     state= {
-        emailAddress: "",
+        email_address: "",
         username: "",
         password: "",
-        passwordConfirm: ""
+        password_confirmation: ""
     }
 
     handleOnChange =(event) => {
@@ -17,6 +17,7 @@ class SignupForm extends React.Component {
     }
 
     createNewUser = (user) => {
+        console.log(user, "user in createNewUser")
         fetch(USERS_URL, {
             method: "POST",
             headers: {
@@ -35,10 +36,10 @@ class SignupForm extends React.Component {
     handleOnSubmit = event => {
         event.preventDefault();
         const user = {
-            emailAddress: this.state.emailAddress,
+            email_address: this.state.email_address,
             username: this.state.username,
             password: this.state.password,
-            passwordConfirm: this.state.passwordConfirm
+            password_confirmation: this.state.password_confirmation
         };
         this.createNewUser(user);
     }
@@ -47,13 +48,13 @@ class SignupForm extends React.Component {
         return(
             <div id="signup-form">
                     <form onSubmit={event => this.handleOnSubmit(event)} className="pa2">
-                        <input type="email" name="emailAddress" placeholder="Enter your Email Address" value={this.state.emailAddress} onChange={event => this.handleOnChange(event)}/>
+                        <input type="email" name="email_address" placeholder="Enter your Email Address" value={this.state.email_address} onChange={event => this.handleOnChange(event)}/>
                         <br/>
                         <input type="text" name="username" placeholder="Choose a Username" value={this.state.username} onChange={event => this.handleOnChange(event)}/>
                         <br/>
                         <input type="password" name="password" placeholder="Enter a Password" value={this.state.password} onChange={event => this.handleOnChange(event)}/>
                         <br/>
-                        <input type="password" name="passwordConfirm" placeholder="Confirm Password" value={this.state.passwordConfirm} onChange={event => this.handleOnChange(event)}/>
+                        <input type="password" name="password_confirmation" placeholder="Confirm Password" value={this.state.password_confirmation} onChange={event => this.handleOnChange(event)}/>
                         <br/>
                         <input type="submit" value="Sign Up" className="ma1"/>
                     </form>

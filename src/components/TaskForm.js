@@ -41,13 +41,10 @@ class TaskForm extends React.Component{
     render(){
         return(
             <div id="task-form">
-                {localStorage.loggedIn !== "undefined" ? 
-                    <form onSubmit={event => this.handleOnSubmit(event)}>
-                        <input type="text" placeholder="What do you have to do?" value={this.state.task} onChange={event => this.handleOnChange(event)}/>
-                        <input type="submit" value="Add to List"/>
-                    </form>
-                : null 
-                }    
+                <form onSubmit={event => this.handleOnSubmit(event)}>
+                    <input type="text" placeholder="What do you have to do?" value={this.state.task} onChange={event => this.handleOnChange(event)}/>
+                    <input type="submit" value="Add to List"/>
+                </form>
             </div>
         )
     }

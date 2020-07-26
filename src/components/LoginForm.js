@@ -1,5 +1,5 @@
 import React from 'react';
-import {USERS_URL} from '../constants.js'
+import {BASE_URL} from '../constants.js'
 
 class LoginForm extends React.Component{
 
@@ -22,7 +22,7 @@ class LoginForm extends React.Component{
             password: this.state.password
         };
 
-        fetch(USERS_URL, {
+        fetch(BASE_URL + 'login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -32,14 +32,13 @@ class LoginForm extends React.Component{
         })
         .then(res => res.json())
         .then((userId) => {
-            if(userId){ 
+            if(userId){
                 localStorage.loggedIn = userId
                 this.props.updateLoggedInUser(localStorage.loggedIn)
                 this.props.history.push("/")
             } else {
                 return "Username or Password is Incorrect."
             }
-            
         })
 
     }

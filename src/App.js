@@ -11,7 +11,7 @@ import { BrowserRouter as Switch, Route, Link } from 'react-router-dom';
 class App extends React.Component{
 
   state = {
-    loggedInUser: null,
+    loggedInUser: localStorage.loggedIn,
   }
 
   updateLoggedInUser = (id) => {
@@ -20,9 +20,10 @@ class App extends React.Component{
     })
   }
 
-  
   render(){
     const { loggedInUser } = this.state;
+    console.log(this.state.loggedInUser)
+   
     return(
       <div id="app" className="tc">
 
@@ -32,16 +33,17 @@ class App extends React.Component{
             <Clock/>
             <TasksContainer currentUser={this.state.loggedInUser} /> 
             </>
-          :  
+          : 
             <>
-
-            {/* Find a way to hide the buttons when clicked. Change from component to render in Route tag and pass in props. Delete UserContainer component it is unnecessary. */}
             <Route exact path="/login"  render={(routeProps)=> <LoginForm {...routeProps} updateLoggedInUser={this.updateLoggedInUser}/>}/>
-            <Route exact path="/signup" render={(routeProps)=> <SignupForm {...routeProps} updateLoggedInUser={this.updateLoggedInUser}/>}/>
+
             <Link to="/login"><button>Log In</button></Link>
+
+            <Route exact path="/signup" render={(routeProps)=> <SignupForm {...routeProps} updateLoggedInUser={this.updateLoggedInUser}/>}/>
+
             <Link to="/signup"><button>Sign Up</button></Link>
             </>}
-            
+
       </div>
     )
   }
