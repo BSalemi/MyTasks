@@ -1,7 +1,12 @@
 import React from 'react';
 import {COMPLETED_URL, UNDO_URL} from '../constants.js'
+import { LoadSpinner } from './LoadSpinner.js'
 
 class Task extends React.Component{
+
+    state = {
+        loading: false 
+    }
 
     completeTask = (event) => {
         event.preventDefault();
@@ -45,10 +50,13 @@ class Task extends React.Component{
 
     render(){
         const {id, toDo} = this.props;
+        const { loading } = this.state;
         const taskStyling = "tc bg-light-purple dib br3 pa3 ma2 grow bw2 shadow-5"
         const buttonStyle = "tc pa1 ma1 br-pill bw"
 
         return(
+            <>
+            { loading ? <LoadSpinner /> :
             <div className={taskStyling}>
                 <h2 className={this.props.completed ? "completedTask" : undefined}>
                     {toDo}
@@ -61,6 +69,8 @@ class Task extends React.Component{
                 </div>
 
             </div>
+            }
+            </>
         )
     }
 }
