@@ -33,7 +33,15 @@ body {
   font-weight: bolder
 }
 
-.completedTask{
+.bg-dwyl-pink {
+  background-color: #f26394;
+}
+
+.bg-dwyl-lime {
+  background-color: #63f26b;
+}
+
+.completed{
   text-decoration: line-through;
 }
 .loader {

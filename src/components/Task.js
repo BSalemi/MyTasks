@@ -51,14 +51,15 @@ class Task extends React.Component{
     render(){
         const {id, toDo} = this.props;
         const { loading } = this.state;
-        const taskStyling = "tc bg-light-purple dib br3 pa3 ma2 grow bw2 shadow-5"
+        const taskStyling = "tc bg-dwyl-pink dib br3 pa3 ma2 grow bw2 shadow-5"
+        const completedStyling = "tc bg-dwyl-lime dib br3 pa3 ma2 grow bw2 shadow-5"
         const buttonStyle = "tc pa1 ma1 br-pill bw"
 
         return(
             <>
             { loading ? <LoadSpinner /> :
-            <div className={taskStyling}>
-                <h2 className={this.props.completed ? "completedTask" : undefined}>
+            <div className={this.props.completed? `${completedStyling}` : `${taskStyling}`}>
+                <h2 className={this.props.completed ? `completed` : undefined}>
                     {toDo}
                 </h2>
                 <p>
