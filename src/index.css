@@ -5,7 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to right, rgb(40, 0, 116), purple);
 }
 
 code {
@@ -15,13 +14,10 @@ code {
 
 @import url('https://fonts.googleapis.com/css?family=Orbitron');
 
-body {
-  background-color: #121212;
-}
 
 #clock {
   font-family: 'Orbitron', sans-serif;
-  color: #a463f2;
+  color: rgb(164, 99, 242);
   font-size: 40px;
   text-align: center;
   padding-top: 20px;
@@ -30,8 +26,18 @@ body {
 
 #logo{
   font-family: 'Orbitron', sans-serif;
-  font-weight: bolder
+  font-weight: bolder;
+  background: linear-gradient(110deg, #f26394 45%, #63f26b 55%);
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  height: 60px;
+  box-shadow: 5px 5px 5px rgba(164, 99, 242,0.3);
+  color: rgba(164,99,242);
+  text-shadow: 1px 1px white;
 }
+
 
 .bg-dwyl-pink {
   background-color: #f26394;
@@ -41,6 +47,15 @@ body {
   background-color: #63f26b;
 }
 
+.ba-b--melon{
+  border: 2px #f26394 outset;
+  cursor: pointer;
+}
+
+.ba-b--lime{
+  border: 2px #63f26b outset;
+  cursor: pointer;
+}
 .completed{
   text-decoration: line-through;
 }

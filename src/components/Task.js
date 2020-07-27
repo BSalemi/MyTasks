@@ -43,7 +43,6 @@ class Task extends React.Component{
         })
         .then(res => res.json())
         .then(task => {
-            console.log(task, "task after promise")
             this.props.updateTask(task)
          })
     }
@@ -53,7 +52,8 @@ class Task extends React.Component{
         const { loading } = this.state;
         const taskStyling = "tc bg-dwyl-pink dib br3 pa3 ma2 grow bw2 shadow-5"
         const completedStyling = "tc bg-dwyl-lime dib br3 pa3 ma2 grow bw2 shadow-5"
-        const buttonStyle = "tc pa1 ma1 br-pill bw"
+        const undoButton = "tc pa1 ma1 br-pill bw bg-dwyl-pink ba-b--melon"
+        const completeButton = "tc pa1 ma1 br-pill bw bg-dwyl-lime ba-b--lime"
 
         return(
             <>
@@ -66,7 +66,7 @@ class Task extends React.Component{
                     {this.props.completed ? "Status: Complete" : "Status: Incomplete"}
                 </p>
                 <div>
-                    {this.props.completed ?  <button value={id} className={buttonStyle} onClick={event => this.undoComplete(event)}>Undo</button> :  <button value={id} className={buttonStyle} onClick={event => this.completeTask(event)}>Complete</button>}
+                    {this.props.completed ?  <button value={id} className={undoButton} onClick={event => this.undoComplete(event)}>Undo</button> :  <button value={id} className={completeButton} onClick={event => this.completeTask(event)}>Complete</button>}
                 </div>
 
             </div>
