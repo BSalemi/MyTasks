@@ -15,35 +15,39 @@ class TaskForm extends React.Component{
     }
 
     handleOnSubmit = (event) => {
+        const {task} = this.state
         event.preventDefault();
-
-        const task = {
-            to_do: this.state.task,
-            user_id: localStorage.loggedIn
-        };
-            fetch(TASKS_URL,{ 
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json"
-                },
-                body: JSON.stringify(task)
+        if(task.length > 0){
+            const toDo = {
+                task: task,
+                user_id: localStorage.loggedIn
+            };
+                fetch(TASKS_URL,{ 
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json"
+                    },
+                    body: JSON.stringify(toDo)
+                })
+                .then(res => res.json())
+                .then((newTask) => {
+                    this.props.addTask(newTask);
+                }) 
+            this.setState({
+                task: ""
             })
-            .then(res => res.json())
-            .then((newTask) => {
-                this.props.addTask(newTask);
-            }) 
-        this.setState({
-            task: ""
-        })
+        } else {
+            alert("Please enter a task before submitting.")
+        }
     }
 
     render(){
         return(
-            <div id="task-form">
-                <form onSubmit={event => this.handleOnSubmit(event)}>
+            <div>
+                <form className="task-form" onSubmit={event => this.handleOnSubmit(event)}>
                     <input type="text" placeholder="What do you have to do?" value={this.state.task} onChange={event => this.handleOnChange(event)}/>
-                    <input type="submit" value="Add to List"/>
+                    <input type="submit" value="Add New Task"/>
                 </form>
             </div>
         )
