@@ -5,7 +5,8 @@ import {TASKS_URL} from '../constants.js'
 class TaskForm extends React.Component{
 
     state = {
-        task: ""
+        task: "",
+        dueDate: false
     }
 
     handleOnChange = (event) => {
@@ -43,10 +44,14 @@ class TaskForm extends React.Component{
     }
 
     render(){
+       const {dueDate} = this.state
         return(
             <div>
                 <form className="task-form" onSubmit={event => this.handleOnSubmit(event)}>
                     <input type="text" placeholder="What do you have to do?" value={this.state.task} onChange={event => this.handleOnChange(event)}/>
+                    <label>Deadline?</label>
+                    <input defaultChecked={false} type="checkbox" className="has-due-date" value="has-due-date"/>
+                    {!dueDate ? null : <input type="date"/>}
                     <input type="submit" value="Add New Task"/>
                 </form>
             </div>
