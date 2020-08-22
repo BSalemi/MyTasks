@@ -15,7 +15,8 @@ class TaskForm extends React.Component{
         })
     }
 
-    handleOnClick = () => {
+    handleOnClick = (event) => {
+        event.preventDefault()
         this.setState((prevState) => {
             return {
                 ...this.state,
@@ -56,12 +57,11 @@ class TaskForm extends React.Component{
        const {dueDate} = this.state
         return(
             <div>
-                <form className="task-form" onSubmit={event => this.handleOnSubmit(event)}>
+                <form className="task-form" onSubmit={event => this.handleOnSubmit(event)} >
                     <input type="text" placeholder="What do you have to do?" value={this.state.task} onChange={event => this.handleOnChange(event)}/>
-                    <label>Deadline?</label>
-                    <input onClick={this.handleOnClick} defaultChecked={false} type="checkbox" className="has-due-date" value="has-due-date"/>
-                    {!dueDate ? null : <input type="date"/>}
-                    <input type="submit" value="Add New Task"/>
+                    <button onClick={event => this.handleOnClick(event)} className="due-date-button">Add Due Date</button>
+                    {!dueDate ? null : <input type="date" className="due-date-input"/>}
+                    <input type="submit" value="Add New Task" />
                 </form>
             </div>
         )

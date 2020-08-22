@@ -31,10 +31,11 @@ class LoginForm extends React.Component{
             body: JSON.stringify(user)
         })
         .then(res => res.json())
-        .then((userId) => {
-            if(userId){
-                localStorage.loggedIn = userId
-                this.props.updateLoggedInUser(localStorage.loggedIn)
+        .then((user) => {
+            console.log(user, "user")
+            if(user){
+                localStorage.loggedIn = user.id
+                this.props.updateCurrentUser(user)
                 this.props.history.push("/")
             } else {
                 return "Username or Password is Incorrect."

@@ -136,7 +136,7 @@ code {
 }
 
 input {
-  width: 75%;
+  width: 60%;
   padding: 10px;
 }
 
@@ -153,4 +153,13 @@ input.task-form {
   border-radius: 5px;
   font-size: 40px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
+}
+
+.due-date-button{
+  padding:10px;
+  margin: 5px
+}
+
+.due-date-input{
+  margin-bottom: 5px
 }

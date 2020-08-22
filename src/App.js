@@ -11,35 +11,38 @@ import { BrowserRouter as Switch, Route, Link } from 'react-router-dom';
 class App extends React.Component{
 
   state = {
-    loggedInUser: localStorage.loggedIn,
+    currentUserId: localStorage.loggedIn,
+    currentUserName: null
   }
 
-  updateLoggedInUser = (id) => {
+  updateCurrentUser = (user) => {
+    localStorage.loggedIn = user.id
     this.setState({
-      loggedInUser: id
+      currentUserId: user.id,
+      currentUserName: user.username
     })
   }
 
   render(){
-    const { loggedInUser } = this.state;
-    console.log(this.state.loggedInUser)
-   
+    const { currentUserId, currentUserName } = this.state;
+    console.log(currentUserId, currentUserName)
+  
     return(
       <div id="app" className="tc">
 
         <h1 id="logo" className="f1"> My Tasks</h1>
-          {loggedInUser ? 
+          {currentUserId !== undefined ? 
             <>
             <Clock/>
-            <TasksContainer currentUser={this.state.loggedInUser} /> 
+            <TasksContainer currentUser={this.state.currentUserId} /> 
             </>
           : 
             <>
-            <Route exact path="/login"  render={(routeProps)=> <LoginForm {...routeProps} updateLoggedInUser={this.updateLoggedInUser}/>}/>
+            <Route exact path="/login"  render={(routeProps)=> <LoginForm {...routeProps} updateCurrentUser={this.updateCurrentUser}/>}/>
 
             <Link to="/login"><button>Log In</button></Link>
 
-            <Route exact path="/signup" render={(routeProps)=> <SignupForm {...routeProps} updateLoggedInUser={this.updateLoggedInUser}/>}/>
+            <Route exact path="/signup" render={(routeProps)=> <SignupForm {...routeProps} updateCurrentUser={this.updateCurrentUser}/>}/>
 
             <Link to="/signup"><button>Sign Up</button></Link>
             </>}

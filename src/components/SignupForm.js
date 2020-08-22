@@ -7,7 +7,8 @@ class SignupForm extends React.Component {
         email_address: "",
         username: "",
         password: "",
-        password_confirmation: ""
+        password_confirmation: "",
+        errors: {}
     }
 
     handleOnChange =(event) => {
@@ -17,7 +18,6 @@ class SignupForm extends React.Component {
     }
 
     createNewUser = (user) => {
-        console.log(user, "user in createNewUser")
         fetch(USERS_URL, {
             method: "POST",
             headers: {
@@ -28,8 +28,15 @@ class SignupForm extends React.Component {
         })
         .then(res => res.json())
         .then((userData) => {
-            localStorage.loggedIn = userData.id 
-            this.props.updateLoggedInUser(localStorage.loggedIn)
+            console.log(userData.errors, "errors")
+            if(!userData.errors){
+                localStorage.loggedIn = userData.id 
+                this.props.updateCurrentUser(userData)
+            } else {
+                this.setState({
+                    errors: userData.errors
+                })
+            }
         })
     }
 
@@ -43,9 +50,34 @@ class SignupForm extends React.Component {
         };
         this.createNewUser(user);
     }
+    isErrorsEmpty = (obj) => {
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
+    generateErrors = () => {
+        const {errors} = this.state;
+        let messages = [];  
+        for (let [error, msgs] of Object.entries(errors)) {
+          const messagesLis = msgs.map(m => (<li>{m}</li>));
+          messages.push(
+            <>
+              {error.charAt(0).toUpperCase() + error.slice(1)}:   
+              {messagesLis}
+            </>
+          );
+        }  
+        return messages;
+    }
 
     render(){
+        const {errors} = this.state
+
         return(
+            <div>
+            {this.isErrorsEmpty(errors) ? ( 
             <div id="signup-form">
                     <form onSubmit={event => this.handleOnSubmit(event)} className="pa2">
                         <input type="email" name="email_address" placeholder="Enter your Email Address" value={this.state.email_address} onChange={event => this.handleOnChange(event)}/>
@@ -58,6 +90,8 @@ class SignupForm extends React.Component {
                         <br/>
                         <input type="submit" value="Sign Up" className="ma1"/>
                     </form>
+            </div>)
+            : <ul> {this.generateErrors()}</ul>}
             </div>
         )
     }
