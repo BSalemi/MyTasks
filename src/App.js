@@ -38,15 +38,28 @@ class App extends React.Component{
             </>
           : 
             <>
-            <Route exact path="/login"  render={(routeProps)=> <LoginForm {...routeProps} updateCurrentUser={this.updateCurrentUser}/>}/>
+            <Route exact path="/login"  render={(routeProps) => 
+              <div>
+                <LoginForm {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
+                <Link to="/signup"><button>Sign Up</button></Link>
+              </div>
+              }/>
 
-            <Link to="/login"><button>Log In</button></Link>
+            <Route exact path="/signup" render={(routeProps)=> 
+              <div>
+                <SignupForm {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
+                <Link to="/login"><button>Log In</button></Link>
+              </div>
+             }/>
 
-            <Route exact path="/signup" render={(routeProps)=> <SignupForm {...routeProps} updateCurrentUser={this.updateCurrentUser}/>}/>
-
-            <Link to="/signup"><button>Sign Up</button></Link>
+           
+            <Route exact path="/" render={() => 
+              <div>
+                <Link to="/signup"><button>Sign Up</button></Link>
+                <Link to="/login"><button>Log In</button></Link>
+              </div>
+            }/>
             </>}
-
       </div>
     )
   }
