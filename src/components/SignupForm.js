@@ -28,7 +28,6 @@ class SignupForm extends React.Component {
         })
         .then(res => res.json())
         .then((userData) => {
-            console.log(userData.errors, "errors")
             if(!userData.errors){
                 localStorage.loggedIn = userData.id 
                 this.props.updateCurrentUser(userData)

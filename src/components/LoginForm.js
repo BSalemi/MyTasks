@@ -36,7 +36,6 @@ class LoginForm extends React.Component{
             })
             .then(res => res.json())
             .then((user) => {
-                console.log(user.hasOwnProperty('message'), "user after log in")
                 if(!user.hasOwnProperty("message")){
                     localStorage.loggedIn = user.id
                     this.props.updateCurrentUser(user)
@@ -46,7 +45,6 @@ class LoginForm extends React.Component{
                         ...this.state,
                         error: "Username or Password is Incorrect"
                     })
-                    console.log(this.state.error, "Error")
                 }
             })
         } else {
@@ -57,7 +55,6 @@ class LoginForm extends React.Component{
 
     render(){
         const {error} = this.state
-        console.log(error,"error")
         return(
             <>
             {error.length !== 0 ? 

@@ -48,12 +48,18 @@ class Task extends React.Component{
     }
 
     render(){
-        const {id, toDo} = this.props;
+        const {id, toDo, dueDate} = this.props;
         const { loading } = this.state;
         const taskStyling = "tc bg-dwyl-pink dib br3 pa3 ma2 grow bw2 shadow-5"
         const completedStyling = "tc bg-dwyl-lime dib br3 pa3 ma2 grow bw2 shadow-5"
         const undoButton = "tc pa1 ma1 br-pill bw bg-dwyl-pink ba-b--melon"
         const completeButton = "tc pa1 ma1 br-pill bw bg-dwyl-lime ba-b--lime"
+        let convertedDueDate
+
+        if(dueDate !== null){
+           convertedDueDate = dueDate.split("T")[0]
+        }
+
 
         return(
             <>
@@ -62,6 +68,7 @@ class Task extends React.Component{
                 <h2 className={this.props.completed ? `completed` : undefined}>
                     {toDo}
                 </h2>
+                {dueDate ? <h4>Date Due: {convertedDueDate} </h4>: null}
                 <p>
                     {this.props.completed ? "Status: Complete" : "Status: Incomplete"}
                 </p>

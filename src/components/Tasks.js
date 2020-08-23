@@ -10,7 +10,7 @@ class Tasks extends React.Component{
         
          
         const tasksCards = userTasks.map(task => {
-            return <Task key={task.id} id={task.id} toDo={task.to_do} completed={task.completed} updateTask={this.props.updateTask} user_id={task.user_id}/>
+            return <Task key={task.id} id={task.id} toDo={task.to_do} completed={task.completed} dueDate={task.due_date} updateTask={this.props.updateTask} user_id={task.user_id}/>
         })
         return tasksCards
     }

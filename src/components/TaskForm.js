@@ -7,7 +7,6 @@ class TaskForm extends React.Component{
     state = {
         task: "",
         hasDueDate: false,
-        dueDate: ""
     }
 
     handleOnChange = (event) => {

@@ -12,7 +12,7 @@ class App extends React.Component{
 
   state = {
     currentUserId: localStorage.loggedIn,
-    currentUserName: null
+    currentUserName: ""
   }
 
   updateCurrentUser = (user) => {
@@ -25,7 +25,7 @@ class App extends React.Component{
 
   render(){
     const { currentUserId, currentUserName } = this.state;
-    console.log(currentUserId, currentUserName)
+    console.log(currentUserName," name")
   
     return(
       <div id="app" className="tc">
@@ -33,6 +33,7 @@ class App extends React.Component{
         <h1 id="logo" className="f1"> My Tasks</h1>
           {currentUserId !== undefined ? 
             <>
+            <p>Hello {currentUserName}</p>
             <Clock/>
             <TasksContainer currentUser={this.state.currentUserId} /> 
             </>
