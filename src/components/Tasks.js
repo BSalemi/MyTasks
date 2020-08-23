@@ -1,5 +1,6 @@
 import React from 'react';
-import Task from './Task.js'
+import Task from './Task.js';
+import {TASKS_URL} from '../constants.js'
 
 
 class Tasks extends React.Component{
@@ -10,10 +11,29 @@ class Tasks extends React.Component{
         
          
         const tasksCards = userTasks.map(task => {
-            return <Task key={task.id} id={task.id} toDo={task.to_do} completed={task.completed} dueDate={task.due_date} updateTask={this.props.updateTask} user_id={task.user_id}/>
+            return <Task key={task.id} id={task.id} toDo={task.to_do} completed={task.completed} dueDate={task.due_date} updateTask={this.props.updateTask} deleteTask={this.deleteTask} user_id={task.user_id}/>
         })
         return tasksCards
     }
+
+    deleteTask = (event) => {
+        event.preventDefault()
+        const taskId = event.target.value
+
+        fetch(TASKS_URL + '/' + taskId, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                id: taskId,
+            }),
+        })
+        .then(res => res.json())
+        .then(this.generateTasks())
+    }
+
 
     render(){
         return(

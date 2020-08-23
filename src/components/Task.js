@@ -28,6 +28,7 @@ class Task extends React.Component{
         })
     }
 
+    
     undoComplete = (event) => {
         event.preventDefault();
         let id = event.target.value;
@@ -65,10 +66,11 @@ class Task extends React.Component{
             <>
             { loading ? <LoadSpinner /> :
             <div className={this.props.completed? `${completedStyling}` : `${taskStyling}`}>
+                <button value={id} onClick={event => this.props.deleteTask(event)}>x</button>
                 <h2 className={this.props.completed ? `completed` : undefined}>
                     {toDo}
                 </h2>
-                {dueDate ? <h4>Date Due: {convertedDueDate} </h4>: null}
+                {dueDate ? <div><h5>Date Due:</h5> {convertedDueDate}</div> : null}
                 <p>
                     {this.props.completed ? "Status: Complete" : "Status: Incomplete"}
                 </p>
