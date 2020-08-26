@@ -46,23 +46,44 @@ class TasksContainer extends React.Component {
             tasks: updatedTasks
         })
       }
-      //updateTask
-      //filter state tasks to find task with same id
-      //set that filtered task equal to the newly updated task
-      //push that updated task back into state
 
     fetchTasks = () => {
-
+       
+        const currentUser = parseInt(this.state.currentUser)
         fetch(TASKS_URL)
         .then(res => res.json())
-        .then(fetchedTasks =>
+        .then(fetchedTasks => {
+            let tasks = fetchedTasks.filter((task) => task.user_id === currentUser)
             this.setState({
             ...this.state,
             loading: false,
-            tasks: fetchedTasks
-        }))
+            tasks: tasks
+        })
+    })
     }
 
+    deleteTask = (event) => {
+        event.preventDefault()
+        const taskId = event.target.value
+
+        fetch(TASKS_URL + '/' + taskId, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                id: taskId,
+            }),
+        })
+        .then(res => res.json())
+        .then(tasks => {
+            this.setState({
+                ...this.state,
+                tasks: tasks
+            })
+        })
+    }
 
     render(){
         const { loading } = this.state;
@@ -71,7 +92,7 @@ class TasksContainer extends React.Component {
             {loading ? <LoadSpinner /> : 
                 <div id="tasks-container">
                 <TaskForm addTask={this.addTask} tasks={this.state.tasks}/>
-                <Tasks tasks={this.state.tasks} updateTask={this.updateTask} currentUser={this.state.currentUser}/>
+                <Tasks tasks={this.state.tasks} updateTask={this.updateTask} deleteTask={this.deleteTask} currentUser={this.state.currentUser}/>
                 </div>
             }
             </>
