@@ -55,10 +55,18 @@ class Task extends React.Component{
         const completedStyling = "tc bg-dwyl-lime dib br3 pa3 ma2 grow bw2 shadow-5"
         const undoButton = "tc pa1 ma1 br-pill bw bg-dwyl-pink ba-b--melon"
         const completeButton = "tc pa1 ma1 br-pill bw bg-dwyl-lime ba-b--lime"
-        let convertedDueDate
+        let newDueDate
 
         if(dueDate !== null){
-           convertedDueDate = dueDate.split("T")[0]
+           let convertedDueDate,
+               splitDueDate =  dueDate.split("T")[0].split("-"),
+               month = splitDueDate[1] - 1,
+               year = splitDueDate[0],
+               day = splitDueDate[2]
+
+           convertedDueDate = new Date(year, month, day)
+           newDueDate = convertedDueDate.toLocaleDateString()
+
         }
 
 
@@ -70,7 +78,7 @@ class Task extends React.Component{
                 <h2 className={this.props.completed ? `completed` : undefined}>
                     {toDo}
                 </h2>
-                {dueDate ? <div><h5>Date Due:</h5> {convertedDueDate}</div> : null}
+                {dueDate ? <div><h5>Date Due:</h5> {newDueDate}</div> : null}
                 <p>
                     {this.props.completed ? "Status: Complete" : "Status: Incomplete"}
                 </p>
