@@ -26,6 +26,7 @@ class TasksContainer extends React.Component {
       }
     
       updateTask = (updatedTask) => {
+          console.log(updatedTask.completed, "completed status")
         let updatedTasks = this.state.tasks.map(task => {
             if(task.id === updatedTask.id){
                 if(task.completed){

@@ -4,35 +4,26 @@ import Task from './Task.js';
 
 class Tasks extends React.Component{
 
-    state = {
-        tasksWithDates: [],
-        tasks: []
-    }
-
-    componentDidMount(){
-        this.sortTasks()
-    }
-
-    sortTasks = () => {
-
-        const deadlineTasks = this.props.tasks.filter(task => task.due_date !== null);
-        const tasksWithoutDeadline = this.props.tasks.filter(task => task.due_date === null)
-        
-        this.setState({
-            tasksWithDates: deadlineTasks,
-            tasks: tasksWithoutDeadline
-        })
-    }
+ 
     generateTasks = () => {
-
-        const tasksCards = this.state.tasks.map(task => {
+        const filteredTasks = this.props.tasks.filter(task => task.due_date === null && task.completed === false)
+        const tasksCards = filteredTasks.map(task => {
             return <Task key={task.id} id={task.id} toDo={task.to_do} completed={task.completed} dueDate={task.due_date} updateTask={this.props.updateTask} deleteTask={this.props.deleteTask} user_id={task.user_id}/>
         })
         return tasksCards
     }
 
     generateTasksWithDeadlines = () => {
-        const tasksCards = this.state.tasksWithDates.map(task => {
+        const filteredTasks = this.props.tasks.filter(task => task.due_date !== null && task.completed === false)
+        const tasksCards = filteredTasks.map(task => {
+            return <Task key={task.id} id={task.id} toDo={task.to_do} completed={task.completed} dueDate={task.due_date} updateTask={this.props.updateTask} deleteTask={this.props.deleteTask} user_id={task.user_id}/>
+        })
+        return tasksCards
+    }
+
+    generateCompletedTasks = () => {
+        const filteredTasks = this.props.tasks.filter(task => task.completed === true)
+        const tasksCards = filteredTasks.map(task => {
             return <Task key={task.id} id={task.id} toDo={task.to_do} completed={task.completed} dueDate={task.due_date} updateTask={this.props.updateTask} deleteTask={this.props.deleteTask} user_id={task.user_id}/>
         })
         return tasksCards
@@ -40,16 +31,22 @@ class Tasks extends React.Component{
 
 
     render(){
-        const {tasks, tasksWithDates} = this.state
-        console.log(this.state, "state")
+        const {tasks} = this.props
+        const tasksWithDates = tasks.filter(task => task.due_date !== null),
+              tasksWithNoDates = tasks.filter(task => task.due_date === null),
+              completedTasks = tasks.filter(task => task.completed === true)
+        
 
         return(
             <div id="tasks">
                 {tasksWithDates.length > 0 ? (
                 <><h3>High Priority:</h3> {this.generateTasksWithDeadlines()}</>)
                  : null }
-                {tasks.length > 0 ? (
+                {tasksWithNoDates.length > 0 ? (
                 <><h3>At Your Leisure:</h3>{this.generateTasks()}</>)
+                 : null}
+                 {completedTasks.length > 0 ? (
+                <><h3>Completed:</h3>{this.generateCompletedTasks()}</>)
                  : null}
             </div>
         )
