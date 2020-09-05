@@ -163,3 +163,29 @@ input.task-form {
 .due-date-input{
   margin-bottom: 5px
 }
+
+.high-alert{
+  box-shadow: 0px 0px 5px red;
+  border: red 4px solid
+}
+/* 
+.taskContainer{
+  display: flex;
+  flex-direction: row;
+} */
+
+.tasks {
+  width: 90%;
+  background:rgba(214, 214, 214, 0.548);
+  align-items:center;
+  margin: 0 auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 80%;
+  border-radius: 25px
+}
+
+.label {
+  display: flex;
+  margin-left: 3%
+} 
