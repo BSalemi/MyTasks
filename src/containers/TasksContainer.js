@@ -1,6 +1,7 @@
 import React from 'react';
 import TaskForm from '../components/TaskForm.js';
 import Tasks from '../components/Tasks.js';
+import Filter from '../components/Filter.js';
 import { TASKS_URL } from '../constants.js';
 import { LoadSpinner } from '../components/LoadSpinner.js'
 
@@ -10,6 +11,7 @@ class TasksContainer extends React.Component {
     state = {
         currentUser: localStorage.loggedIn,
         tasks: [],
+        filteredTasks: [],
         loading: false
     }
 
@@ -86,14 +88,24 @@ class TasksContainer extends React.Component {
         })
     }
 
+    filterTasks = (tasks) => {
+        this.setState({
+            ...this.state,
+            filteredTasks: tasks
+        })
+
+    }
     render(){
         const { loading } = this.state;
+        console.log(this.state.tasks, "Tasks")
         return(
             <>
             {loading ? <LoadSpinner /> : 
-                <div id="tasks-container">
+                <div className="tasks-container">
+               
                 <TaskForm addTask={this.addTask} tasks={this.state.tasks}/>
-                <Tasks tasks={this.state.tasks} updateTask={this.updateTask} deleteTask={this.deleteTask} currentUser={this.state.currentUser}/>
+                <Filter tasks={this.state.tasks} filterTasks={this.filterTasks}/>
+                <Tasks tasks={this.state.tasks} filteredTasks={this.state.filteredTasks} updateTask={this.updateTask} deleteTask={this.deleteTask} currentUser={this.state.currentUser}/>
                 </div>
             }
             </>
