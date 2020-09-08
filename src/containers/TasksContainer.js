@@ -22,13 +22,12 @@ class TasksContainer extends React.Component {
     addTask = (task) => {
         this.setState({
           ...this.state,
-          tasks: [...this.state.tasks, task]
+          tasks: [...this.state.tasks, task],
+          filteredTasks: []
         })
-        return this.state.tasks
-      }
+    }
     
       updateTask = (updatedTask) => {
-          console.log(updatedTask.completed, "completed status")
         let updatedTasks = this.state.tasks.map(task => {
             if(task.id === updatedTask.id){
                 if(task.completed){
@@ -83,7 +82,8 @@ class TasksContainer extends React.Component {
         .then(tasks => {
             this.setState({
                 ...this.state,
-                tasks: tasks
+                tasks: tasks,
+                filteredTasks: []
             })
         })
     }
@@ -97,7 +97,6 @@ class TasksContainer extends React.Component {
     }
     render(){
         const { loading } = this.state;
-        console.log(this.state.tasks, "Tasks")
         return(
             <>
             {loading ? <LoadSpinner /> : 
