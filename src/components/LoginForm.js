@@ -38,6 +38,7 @@ class LoginForm extends React.Component{
             .then((user) => {
                 if(!user.hasOwnProperty("message")){
                     localStorage.loggedIn = user.id
+                    localStorage.user = user.username
                     this.props.updateCurrentUser(user)
                     this.props.history.push("/")
                 } else {

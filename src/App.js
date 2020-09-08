@@ -3,7 +3,9 @@ import TasksContainer from './containers/TasksContainer.js'
 import Clock from './components/Clock'
 import LoginForm from './components/LoginForm'
 import SignupForm from './components/SignupForm.js';
+import Logout from './components/Logout.js';
 import { BrowserRouter as Switch, Route, Link } from 'react-router-dom';
+
 
 
 
@@ -12,7 +14,7 @@ class App extends React.Component{
 
   state = {
     currentUserId: localStorage.loggedIn,
-    currentUserName: ""
+    currentUserName: localStorage.user
   }
 
   updateCurrentUser = (user) => {
@@ -25,7 +27,6 @@ class App extends React.Component{
 
   render(){
     const { currentUserId, currentUserName } = this.state;
-    console.log(currentUserName," name")
   
     return(
       <div id="app" className="tc">
@@ -34,6 +35,7 @@ class App extends React.Component{
           {currentUserId !== undefined ? 
             <>
             <p>Hello {currentUserName}</p>
+            <Logout history={this.props.history}/>
             <Clock/>
             <TasksContainer currentUser={this.state.currentUserId} /> 
             </>

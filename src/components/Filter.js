@@ -10,14 +10,16 @@ class Filter extends React.Component{
         } 
         if (e.target.value === "deadlines"){
             const tasksWithDeadlines = tasks.filter(task => task.due_date !== null && task.completed === false);
-            filterTasks(tasksWithDeadlines)
+            const sortedDeadlines = tasksWithDeadlines.sort((a, b) => new Date(a.due_date) - new Date(b.due_date))
+            filterTasks(sortedDeadlines)
         }
         if (e.target.value === "no-deadlines"){
             const tasksWithoutDeadlines = tasks.filter(task => task.due_date === null && task.completed === false);
             filterTasks(tasksWithoutDeadlines)
         }
         if(e.target.value === "all"){
-            filterTasks(tasks)
+            const allTasks = tasks.filter(task => task.completed === false)
+            filterTasks(allTasks)
         }
     }
     render(){
