@@ -63,6 +63,7 @@ class TaskForm extends React.Component{
     }
 
     toggleTaskForm = () => {
+        this.toggleButtonText()
         this.setState((prevState) => {
             return {
                 ...this.state,
@@ -71,19 +72,27 @@ class TaskForm extends React.Component{
         })
     }
 
+    toggleButtonText = () => {
+       let formButton = document.querySelector('.toggleForm') 
+
+       formButton.innerText === "Create New Task" ? formButton.innerText = "Close" : formButton.innerText = "Create New Task"
+    }
+
     render(){
 
-       const {hasDueDate, isClicked} = this.state
+       const {hasDueDate, isClicked} = this.state,
+             formButton = document.querySelector('.toggleForm')
         return(
             <div>
                 <button onClick={this.toggleTaskForm} className="toggleForm">Create New Task</button>
                 {!isClicked ? null  :
+                <>
                 <form className="task-form" onSubmit={event => this.handleOnSubmit(event)} >
                     <input type="text" placeholder="What do you have to do?" value={this.state.task} onChange={event => this.handleOnChange(event)}/>
                     <button onClick={event => this.handleOnClick(event)} className="due-date-button">Add Due Date</button>
                     {!hasDueDate ? null : <input type="date" min={new Date().toISOString().split('T')[0]}  id="due-date-input"/>}
                     <input type="submit" value="Add Task" />
-                </form>
+                </form> </>
                 }
             </div>
         )
