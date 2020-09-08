@@ -14,7 +14,8 @@ class Tasks extends React.Component{
             })
             return tasksCards
         } else {
-            const tasksCards = tasks.map(task => {
+            const incompleteTasks = tasks.filter(task => task.completed === false)
+            const tasksCards = incompleteTasks.map(task => {
                 return <Task key={task.id} id={task.id} toDo={task.to_do} completed={task.completed} dueDate={task.due_date} updateTask={updateTask} deleteTask={deleteTask} user_id={task.user_id}/>
             })
             return tasksCards
