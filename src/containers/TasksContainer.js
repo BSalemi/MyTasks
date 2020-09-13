@@ -95,6 +95,18 @@ class TasksContainer extends React.Component {
         })
 
     }
+
+    isPastDeadline = (date) => {
+        let currentDate = new Date(),
+            daysRemaining = Math.round(((Date.parse(date) - Date.parse(currentDate))/1000)/86400)
+
+        if(daysRemaining < 0){
+            return true
+        } else {
+            return false
+        }
+    }
+
     render(){
         const { loading } = this.state;
         return(
@@ -103,8 +115,8 @@ class TasksContainer extends React.Component {
                 <div className="tasks-container">
                
                 <TaskForm addTask={this.addTask} tasks={this.state.tasks}/>
-                <Filter tasks={this.state.tasks} filterTasks={this.filterTasks}/>
-                <Tasks tasks={this.state.tasks} filteredTasks={this.state.filteredTasks} updateTask={this.updateTask} deleteTask={this.deleteTask} currentUser={this.state.currentUser}/>
+                <Filter tasks={this.state.tasks} filterTasks={this.filterTasks} isPastDeadline={this.isPastDeadline}/>
+                <Tasks tasks={this.state.tasks} filteredTasks={this.state.filteredTasks} updateTask={this.updateTask} deleteTask={this.deleteTask} currentUser={this.state.currentUser} isPastDeadline={this.isPastDeadline}/>
                 </div>
             }
             </>

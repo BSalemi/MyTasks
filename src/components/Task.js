@@ -61,20 +61,10 @@ class Task extends React.Component{
         }
     }
 
-    isPastDeadline = (date) => {
-        let currentDate = new Date(),
-            daysRemaining = Math.round(((Date.parse(date) - Date.parse(currentDate))/1000)/86400)
-
-        if(daysRemaining < 0){
-            return true
-        } else {
-            return false
-        }
-    }
 
 
     render(){
-        const {id, toDo, dueDate, completed, deleteTask} = this.props,
+        const {id, toDo, dueDate, completed, deleteTask, isPastDeadline} = this.props,
               { loading } = this.state,
               undoButton = "tc pa1 ma1 br-pill bw bg-dwyl-pink ba-b--melon",
               completeButton = "tc pa1 ma1 br-pill bw bg-dwyl-lime ba-b--lime"
@@ -93,7 +83,7 @@ class Task extends React.Component{
                convertedDueDate = new Date(year, month, day)
                newDueDate = convertedDueDate.toLocaleDateString()
 
-                if(this.isPastDeadline(dueDate)){
+                if(isPastDeadline(dueDate)){
                     taskClass = "overdue task"
                     isOverdue = true
                 } else if(this.isNearDeadline(dueDate)){
@@ -120,8 +110,6 @@ class Task extends React.Component{
                 <p className={this.isNearDeadline(dueDate) && !completed ? " highlight-deadline date" : "date"}><strong>Due:</strong> {newDueDate}</p>
                 )
                 : null}
-
-
 
                 <p>
                     {completed ? "Status: Complete" : "Status: Incomplete"}
