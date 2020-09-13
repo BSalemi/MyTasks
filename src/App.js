@@ -34,7 +34,7 @@ class App extends React.Component{
         <h1 id="logo" className="f1"> My Tasks</h1>
           {currentUserId !== undefined ? 
             <>
-            <p>Hello {currentUserName}</p>
+            <p className="greeting">Hello {currentUserName}</p>
             <Logout history={this.props.history}/>
             <Clock/>
             <TasksContainer currentUser={this.state.currentUserId} /> 

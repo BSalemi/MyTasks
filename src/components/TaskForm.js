@@ -80,8 +80,8 @@ class TaskForm extends React.Component{
 
     render(){
 
-       const {hasDueDate, isClicked} = this.state,
-             formButton = document.querySelector('.toggleForm')
+       const {hasDueDate, isClicked} = this.state
+    
         return(
             <div>
                 <button onClick={this.toggleTaskForm} className="toggleForm">Create New Task</button>
