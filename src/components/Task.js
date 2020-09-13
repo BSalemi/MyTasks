@@ -54,10 +54,21 @@ class Task extends React.Component{
         let currentDate = new Date(),
             daysRemaining = Math.abs(Math.round(((Date.parse(currentDate) - Date.parse(date))/1000)/86400))
 
-        if(daysRemaining <= 7){
+        if(daysRemaining >= 0 && daysRemaining <= 7){
             return true 
         } else {
             return false 
+        }
+    }
+
+    isPastDeadline = (date) => {
+        let currentDate = new Date(),
+            daysRemaining = Math.round(((Date.parse(date) - Date.parse(currentDate))/1000)/86400)
+
+        if(daysRemaining < 0){
+            return true
+        } else {
+            return false
         }
     }
 
@@ -68,34 +79,48 @@ class Task extends React.Component{
               undoButton = "tc pa1 ma1 br-pill bw bg-dwyl-pink ba-b--melon",
               completeButton = "tc pa1 ma1 br-pill bw bg-dwyl-lime ba-b--lime"
         let newDueDate,
-            taskClass 
+            taskClass = "completed task"
 
-        if(dueDate !== null){
-           let convertedDueDate,
+        if(!completed){
+            if(dueDate){
+               let convertedDueDate,
                splitDueDate =  dueDate.split("T")[0].split("-"),
                month = splitDueDate[1] - 1,
                year = splitDueDate[0],
                day = splitDueDate[2]
 
-           convertedDueDate = new Date(year, month, day)
-           newDueDate = convertedDueDate.toLocaleDateString()
+               convertedDueDate = new Date(year, month, day)
+               newDueDate = convertedDueDate.toLocaleDateString()
+
+                if(this.isNearDeadline(dueDate)){
+                    taskClass = "incomplete task high-alert"
+                } else if(this.isPastDeadline(dueDate)){
+                    taskClass = "overdue"
+                } else {
+                    taskClass = "incomplete task"
+                }
+            } else {
+                taskClass = "incomplete task"
+            }
+
         }
 
         return(
             <>
             { loading ? <LoadSpinner /> :
-            <div className={completed? "completed task" : (
-                dueDate && this.isNearDeadline(dueDate) ? "high-alert incomplete task" :
-                "incomplete task"
-                )
-                }>
+            <div className={`${taskClass}`}>
+            {/* // <div className={completed? "completed task" : (
+            //     dueDate && this.isNearDeadline(dueDate) ? "high-alert incomplete task" :
+            //     "incomplete task"
+            //     )
+            //     }> */}
                 <button value={id} onClick={event => deleteTask(event)}>x</button>
                 <h2>
                     {toDo}
                 </h2>
 
                 {dueDate ? (
-                <p className={this.isNearDeadline(dueDate) ? " highlight-deadline date" : "date"}><strong>Due:</strong> {newDueDate}</p>
+                <p className={this.isNearDeadline(dueDate) && !completed ? " highlight-deadline date" : "date"}><strong>Due:</strong> {newDueDate}</p>
                 )
                 : null}
 
