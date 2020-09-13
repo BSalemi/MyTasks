@@ -83,6 +83,22 @@ code {
 .incomplete{
   background-color: #f26394
 }
+
+.overdue{
+  background-color: grey;
+  text-decoration: line-through;
+}
+
+.overdue > p{
+  display: none;
+}
+
+.overdue > h2 {
+  opacity: .2
+}
+
+
+
 .loader {
   position: relative;
   width: 60px;
@@ -201,7 +217,6 @@ input.task-form {
 
 .tasks {
   width: 90%;
-  /* background:rgba(214, 214, 214, 0.548); */
   align-items:center;
   margin: 0 auto;
   padding-top: 5px;

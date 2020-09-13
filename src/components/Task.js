@@ -5,7 +5,7 @@ import { LoadSpinner } from './LoadSpinner.js'
 class Task extends React.Component{
 
     state = {
-        loading: false 
+        loading: false
     }
 
     completeTask = (event) => {
@@ -79,6 +79,7 @@ class Task extends React.Component{
               undoButton = "tc pa1 ma1 br-pill bw bg-dwyl-pink ba-b--melon",
               completeButton = "tc pa1 ma1 br-pill bw bg-dwyl-lime ba-b--lime"
         let newDueDate,
+            isOverdue = false,
             taskClass = "completed task"
 
         if(!completed){
@@ -92,10 +93,11 @@ class Task extends React.Component{
                convertedDueDate = new Date(year, month, day)
                newDueDate = convertedDueDate.toLocaleDateString()
 
-                if(this.isNearDeadline(dueDate)){
+                if(this.isPastDeadline(dueDate)){
+                    taskClass = "overdue task"
+                    isOverdue = true
+                } else if(this.isNearDeadline(dueDate)){
                     taskClass = "incomplete task high-alert"
-                } else if(this.isPastDeadline(dueDate)){
-                    taskClass = "overdue"
                 } else {
                     taskClass = "incomplete task"
                 }
@@ -109,11 +111,6 @@ class Task extends React.Component{
             <>
             { loading ? <LoadSpinner /> :
             <div className={`${taskClass}`}>
-            {/* // <div className={completed? "completed task" : (
-            //     dueDate && this.isNearDeadline(dueDate) ? "high-alert incomplete task" :
-            //     "incomplete task"
-            //     )
-            //     }> */}
                 <button value={id} onClick={event => deleteTask(event)}>x</button>
                 <h2>
                     {toDo}
@@ -129,10 +126,11 @@ class Task extends React.Component{
                 <p>
                     {completed ? "Status: Complete" : "Status: Incomplete"}
                 </p>
+                {isOverdue ? null : 
                 <div>
                     {completed ?  <button value={id} className={undoButton} onClick={event => this.undoComplete(event)}>Undo</button> :  <button value={id} className={completeButton} onClick={event => this.completeTask(event)}>Complete</button>}
                 </div>
-
+                }
             </div>
             }
             </>
