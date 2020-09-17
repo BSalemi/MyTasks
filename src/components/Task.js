@@ -104,7 +104,7 @@ class Task extends React.Component{
             { loading ? <LoadSpinner /> :
             <div className={`${taskClass}`}>
                 <button value={id} onClick={event => deleteTask(event)}>x</button>
-                <h2>
+                <h2 className="toDo">
                     {toDo}
                 </h2>
 
@@ -117,7 +117,7 @@ class Task extends React.Component{
                     {completed ? "Status: Complete" : "Status: Incomplete"}
                 </p>
                 {isOverdue ? null : 
-                <div>
+                <div className="buttonDiv">
                     {completed ?  <button value={id} className={undoButton} onClick={event => this.undoComplete(event)}>Undo</button> :  <button value={id} className={completeButton} onClick={event => this.completeTask(event)}>Complete</button>}
                 </div>
                 }

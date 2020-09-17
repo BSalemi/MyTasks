@@ -91,7 +91,7 @@ class TaskForm extends React.Component{
                     <input type="text" placeholder="What do you have to do?" value={this.state.task} onChange={event => this.handleOnChange(event)}/>
                     <button onClick={event => this.handleOnClick(event)} className="due-date-button">Add Due Date</button>
                     {!hasDueDate ? null : <input type="date" min={new Date().toISOString().split('T')[0]}  id="due-date-input"/>}
-                    <input type="submit" value="Add Task" />
+                    <input className="submit-button" type="submit" value="Add Task" />
                 </form> </>
                 }
             </div>

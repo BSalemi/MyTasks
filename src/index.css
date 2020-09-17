@@ -68,6 +68,10 @@ code {
   box-shadow: 1px 1px 5px rgb(163, 161, 161);
 }
 
+.incomplete > button {
+  font-family: 'Orbitron', sans-serif
+}
+
 .task:hover{
   transform: scale(1.1);
 }
@@ -204,11 +208,13 @@ input.task-form {
   border-radius: 5px;
   font-size: 40px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
+  border-radius:10px
 }
 
 .due-date-button{
   padding:10px;
-  margin: 5px
+  margin: 5px;
+  border-radius: 10px
 }
 
 .due-date-input{
@@ -217,8 +223,11 @@ input.task-form {
 
 .high-alert{
   box-shadow: 0px 0px 3px red;
-  border: red 4px solid;
-  background: red
+  animation-name: high-alert;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate
+  
 }
 
 .highlight-deadline{
@@ -274,4 +283,27 @@ input.task-form {
   padding: 5px;
   margin-bottom: 10px;
   font-family: 'Orbitron', sans-serif
+}
+
+.toDo{
+  font-family: 'Orbitron',sans-serif;
+  font-size: 16px
+}
+
+.buttonDiv{
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px
+}
+
+.submit-button{
+  border-radius: 10px
+}
+
+@keyframes high-alert {
+  0%   {background-color: orange;
+        border: orange 4px solid}
+  50%  {background-color: orangered;
+        border:orangered 4px solid} 
+  100% {background-color: red;
+        border:red 4px solid}
 }
