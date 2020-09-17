@@ -89,15 +89,25 @@ code {
   text-decoration: line-through;
 }
 
-.overdue > p{
+/* .overdue > p{
   display: none;
-}
+} */
 
 .overdue > h2 {
   opacity: .2
 }
 
+.greeting{
+  position: relative;
+  top: 5px;
+  left: -500px;
+  font-size: 18px;
+}
 
+.greeting > strong {
+  font-family: 'Orbitron', sans-serif;
+  color: purple
+}
 
 .loader {
   position: relative;
@@ -173,6 +183,7 @@ code {
 .task-form{
   max-width: 400px;
   margin: 15px auto;
+  font-family: 'Orbitron', sans-serif
 }
 
 input {
@@ -240,13 +251,16 @@ input.task-form {
   padding: 8px;
   background: #a463f2;
   color: white;
-  border: #a463f2 3px outset
+  border: #a463f2 3px outset;
+  font-family: "Orbitron", sans-serif;
 }
 
 .logout{
+  font-family: 'Orbitron', sans-serif;
   position: relative;
   top: -45px;
-  left: 500px
+  left: 500px;
+  border-radius: 25px
 }
 
 .tasks-container{
@@ -258,5 +272,6 @@ input.task-form {
 .toggleForm{
   border-radius: 10px;
   padding: 5px;
-  margin-bottom: 10px
+  margin-bottom: 10px;
+  font-family: 'Orbitron', sans-serif
 }

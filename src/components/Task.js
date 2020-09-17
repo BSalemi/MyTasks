@@ -72,6 +72,8 @@ class Task extends React.Component{
             isOverdue = false,
             taskClass = "completed task"
 
+           
+
         if(!completed){
             if(dueDate){
                let convertedDueDate,
@@ -107,7 +109,7 @@ class Task extends React.Component{
                 </h2>
 
                 {dueDate ? (
-                <p className={this.isNearDeadline(dueDate) && !completed ? " highlight-deadline date" : "date"}><strong>Due:</strong> {newDueDate}</p>
+                <p className={!completed && this.isNearDeadline(dueDate) ? " highlight-deadline date" : "date"}><strong>Due:</strong> {newDueDate}</p>
                 )
                 : null}
 

@@ -8,8 +8,8 @@ class Logout extends React.Component{
     }
     render(){
         return(
-            <div className="logout">
-                <button onClick={this.logOutUser}>Logout</button>
+            <div>
+                <button className="logout" onClick={this.logOutUser}>Logout</button>
             </div>
         )
     }
