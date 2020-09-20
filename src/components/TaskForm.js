@@ -27,10 +27,10 @@ class TaskForm extends React.Component{
     }
 
     handleOnSubmit = (event) => {
-        const {task} = this.state,
-               dateInput = document.getElementById('due-date-input')
-
-        let dateDue;
+        let {task, hasDueDate} = this.state,
+               dateInput = document.getElementById('due-date-input'),
+               taskForm = document.getElementById('taskForm'),
+               dateDue;
 
         dateInput ? dateDue = dateInput.value : dateDue = ""
 
@@ -60,6 +60,16 @@ class TaskForm extends React.Component{
         } else {
             alert("Please enter a task before submitting.")
         }
+        if(hasDueDate){
+            this.setState((prevState) => {
+                return {
+                    ...this.state,
+                    hasDueDate: !prevState.hasDueDate,
+                    task: ""
+                }
+            })
+        }
+        taskForm.reset()
     }
 
     toggleTaskForm = () => {
@@ -87,7 +97,7 @@ class TaskForm extends React.Component{
                 <button onClick={this.toggleTaskForm} className="toggleForm">Create New Task</button>
                 {!isClicked ? null  :
                 <>
-                <form className="task-form" onSubmit={event => this.handleOnSubmit(event)} >
+                <form className="task-form" id="taskForm" onSubmit={event => this.handleOnSubmit(event)} >
                     <input type="text" placeholder="What do you have to do?" value={this.state.task} onChange={event => this.handleOnChange(event)}/>
                     <button onClick={event => this.handleOnClick(event)} className="due-date-button">Add Due Date</button>
                     {!hasDueDate ? null : <input type="date" min={new Date().toISOString().split('T')[0]}  id="due-date-input"/>}

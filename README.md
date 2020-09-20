@@ -31,10 +31,10 @@ From here, users have a number of different options:
 * Update a task's completion status.
 * Delete a task.
 * Filter tasks by:
-    * With Deadline
-    * Without Deadline
-    * Completed
-    * Overdue
+    * Those With Deadlines
+    * Those Without Deadlines
+    * Those that are Completed
+    * Those that are Overdue
 
 ## Contribution
 

@@ -108,7 +108,7 @@ class Task extends React.Component{
                 </h2>
 
                 {dueDate ? (
-                <p className={!completed && this.isNearDeadline(dueDate) ? " highlight-deadline date" : "date"}><strong>Due:</strong> {newDueDate}</p>
+                <p className={isOverdue ? "date" : (!completed && this.isNearDeadline(dueDate) ? " highlight-deadline date" : "date")}><strong>Due:</strong> {newDueDate}</p>
                 )
                 : null}
 

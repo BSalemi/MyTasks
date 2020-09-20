@@ -36,6 +36,7 @@ code {
   box-shadow: 5px 5px 5px rgba(164, 99, 242,0.3);
   color: rgba(164,99,242);
   text-shadow: 1px 1px white;
+  border: 3px white outset
 }
 
 
@@ -94,15 +95,16 @@ code {
 
 .overdue{
   background-color: grey;
+}
+
+.overdue > p{
+  opacity: .3;
   text-decoration: line-through;
 }
 
-/* .overdue > p{
-  display: none;
-} */
-
 .overdue > h2 {
-  opacity: .2
+  opacity: .3;
+  text-decoration: line-through;
 }
 
 .greeting{
@@ -316,5 +318,6 @@ input.task-form {
  border-radius: 25px;
  padding: 5px;
  font-size: 14px;
- margin-left: 1px
+ margin-left: 1px;
+ text-decoration: none;
 }
