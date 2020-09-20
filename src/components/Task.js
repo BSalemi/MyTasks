@@ -115,9 +115,9 @@ class Task extends React.Component{
                 <p>
                     {completed ? "Status: Complete" : "Status: Incomplete"}
                 </p>
-                {isOverdue ? <button onClick={event => deleteTask(event)}>Delete</button> : 
+                {isOverdue ? <button className="deleteButton" value={id} onClick={event => deleteTask(event)}>Delete</button> : 
                 <div className="buttonDiv">
-                    {completed ?  <><button value={id} className={undoButton} onClick={event => this.undoComplete(event)}>Undo</button><button onClick={event => deleteTask(event)}>Delete</button></> :  <><button value={id} className={completeButton} onClick={event => this.completeTask(event)}>Complete</button><button onClick={event => deleteTask(event)}>Delete</button></>}
+                    {completed ?  <><button value={id} className={undoButton} onClick={event => this.undoComplete(event)}>Undo</button><button className="deleteButton" value={id} onClick={event => deleteTask(event)}>Delete</button></> :  <><button value={id} className={completeButton} onClick={event => this.completeTask(event)}>Complete</button><button className="deleteButton"  value={id} onClick={event => deleteTask(event)}>Delete</button></>}
                 </div>
                 }
             </div>
