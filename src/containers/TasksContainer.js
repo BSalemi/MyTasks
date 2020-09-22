@@ -12,7 +12,8 @@ class TasksContainer extends React.Component {
         currentUser: localStorage.loggedIn,
         tasks: [],
         filteredTasks: [],
-        loading: false
+        loading: false,
+        filterType: ""
     }
 
     componentDidMount(){
@@ -93,7 +94,53 @@ class TasksContainer extends React.Component {
             ...this.state,
             filteredTasks: tasks
         })
+    }
 
+    setFilterType = (event) => {
+        this.setState({
+          ...this.state,
+          filterType: event.target.value 
+        })
+    }
+
+    filterBy = (string) => {
+        const {tasks} = this.state
+        let filteredTasks 
+
+        if(tasks){
+            switch(string){
+                
+                case "deadlines":
+                    const tasksWithDeadlines = tasks.filter(task => task.due_date !== null && task.completed === false && this.isPastDeadline(task.due_date) === false),
+                    sortedDeadlines = tasksWithDeadlines.sort((a, b) => new Date(a.due_date) - new Date(b.due_date))
+
+                    filteredTasks = sortedDeadlines
+                    break;
+          
+                case "no-deadlines":
+                    const tasksWithoutDeadlines = tasks.filter(task => task.due_date === null && task.completed === false);
+
+                    filteredTasks = tasksWithoutDeadlines
+                    break;
+                case "completed":
+                    const completedTasks = tasks.filter(task => task.completed === true);
+
+                    filteredTasks = completedTasks
+                    break;
+                case "overdue":
+                    const overdueTasks = tasks.filter(task => this.isPastDeadline(task.due_date) === true && task.completed === false)
+                    filteredTasks = overdueTasks
+                    break;
+                default: 
+                    const allTasks = tasks.filter(task => task.completed === false && this.isPastDeadline(task.due_date) === false)
+                    
+                    filteredTasks = allTasks
+            }
+            return filteredTasks
+        } else {
+            filteredTasks = []
+            return filteredTasks
+        }
     }
 
     isPastDeadline = (date) => {
@@ -108,15 +155,18 @@ class TasksContainer extends React.Component {
     }
 
     render(){
-        const { loading } = this.state;
+        const { loading, filterType } = this.state,
+             filteredTasks = this.filterBy(filterType)
+             console.log(filteredTasks, "filteredTasks")
+             console.log(this.state.tasks, "tasks")
         return(
             <>
             {loading ? <LoadSpinner /> : 
                 <div className="tasks-container">
                
                 <TaskForm addTask={this.addTask} tasks={this.state.tasks}/>
-                <Filter tasks={this.state.tasks} filterTasks={this.filterTasks} isPastDeadline={this.isPastDeadline}/>
-                <Tasks tasks={this.state.tasks} filteredTasks={this.state.filteredTasks} updateTask={this.updateTask} deleteTask={this.deleteTask} currentUser={this.state.currentUser} isPastDeadline={this.isPastDeadline}/>
+                <Filter tasks={this.state.tasks} filterTasks={this.filterTasks} isPastDeadline={this.isPastDeadline} setFilterType={this.setFilterType}/>
+                <Tasks tasks={filteredTasks} updateTask={this.updateTask} deleteTask={this.deleteTask} currentUser={this.state.currentUser} isPastDeadline={this.isPastDeadline}/>
                 </div>
             }
             </>
