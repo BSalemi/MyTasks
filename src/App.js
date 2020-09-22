@@ -45,7 +45,7 @@ class App extends React.Component{
               <div className="credentialsContainer">
                 <p>Log In to Create and View Your Tasks</p>
                 <LoginForm {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
-                <Link to="/signup"><button className="signUpBtn">Sign Up</button></Link>
+                <Link to="/signup"> Don't have an account? Create one here.</Link>
               </div>
               }/>
 
@@ -53,7 +53,7 @@ class App extends React.Component{
               <div className="credentialsContainer">
                 <p>Sign Up to Create Your Task List</p>
                 <SignupForm {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
-                <Link to="/login"><button className="logInBtn">Log In</button></Link>
+                <Link to="/login">Already have an account? Log in here.</Link>
               </div>
              }/>
 

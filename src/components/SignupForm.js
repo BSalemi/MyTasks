@@ -1,5 +1,6 @@
 import React from 'react';
 import { USERS_URL } from '../constants.js'
+import { BrowserRouter as Switch, Route, Link } from 'react-router-dom';
 
 class SignupForm extends React.Component {
 
@@ -60,15 +61,25 @@ class SignupForm extends React.Component {
         const {errors} = this.state;
         let messages = [];  
         for (let [error, msgs] of Object.entries(errors)) {
-          const messagesLis = msgs.map(m => (<li>{m}</li>));
+          const messagesLis = msgs.map(m => (<li className="errorMessage">{m}</li>));
           messages.push(
             <>
-              {error.charAt(0).toUpperCase() + error.slice(1)}:   
+              <p className="errorHeadline">{error.charAt(0).toUpperCase() + error.slice(1)}: </p>  
               {messagesLis}
             </>
           );
         }  
         return messages;
+    }
+
+    resetState = () => {
+        this.setState({
+            email_address: "",
+            username: "",
+            password: "",
+            password_confirmation: "",
+            errors: {}
+        })
     }
 
     render(){
@@ -90,7 +101,9 @@ class SignupForm extends React.Component {
                         <input type="submit" value="Sign Up" className="ma1"/>
                     </form>
             </div>)
-            : <ul> {this.generateErrors()}</ul>}
+            : <><ul> {this.generateErrors()}</ul>
+            <Link to="/signup" onClick={this.resetState} className="goBackLink"> Go back</Link></>
+            }
             </div>
         )
     }

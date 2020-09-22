@@ -334,11 +334,6 @@ input.task-form {
   border-radius: 10px
 }
 
-.signUpBtn{
-  font-family: "Orbitron", sans-serif;
-  border-radius: 10px;
-}
-
 .signupForm{
   font-family: 'Orbitron', sans-serif;
   width: 90%;
@@ -349,18 +344,21 @@ input.task-form {
   border-radius: 10px
 }
 
-.logInBtn{
-  font-family: "Orbitron", sans-serif;
-  border-radius: 10px
+.errorHeadline{
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px
 }
 
+.errorMessage{
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px
+}
 .credentialsContainer{
   background: rgba(238, 231, 247, 0.438);
   width: max-content;
   height: max-content;
   margin: 0 auto;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 15px 20px 15px;
   border-radius: 10px;
 }
 
@@ -368,4 +366,14 @@ input.task-form {
   font-family: 'Orbitron', sans-serif;
   font-size: 16px;
   font-weight: 700
+}
+
+.credentialsContainer > a {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px
+}
+
+.goBackLink{
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px
 }
