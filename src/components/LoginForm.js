@@ -60,14 +60,13 @@ class LoginForm extends React.Component{
             <>
             {error.length !== 0 ? 
              <p> {error} </p> : 
-             <div id="login-form"> 
-             <form onSubmit={event => this.logInUser(event)}>
-                 <input type="text" name="username" placeholder="Enter your Username" value={this.state.username} onChange={event => this.handleOnChange(event)}/>
-                 <br/>
-                 <input type="password" name="password" placeholder="Enter your Password" value={this.state.password} onChange={event => this.handleOnChange(event)}/>
-                 <input type="submit" value="Login"/>
-             </form>
-         </div>
+             <div className="loginForm"> 
+                <form onSubmit={event => this.logInUser(event)}>
+                    <input type="text" name="username" placeholder="Enter your Username" value={this.state.username} onChange={event => this.handleOnChange(event)}/>
+                    <input type="password" name="password" placeholder="Enter your Password" value={this.state.password} onChange={event => this.handleOnChange(event)}/>
+                    <input type="submit" className="submit-button" value="Login"/>
+                </form>
+            </div>
         }
             </>
         )

@@ -72,7 +72,7 @@ class Task extends React.Component{
             isOverdue = false,
             taskClass = "completed task"
 
-           
+
 
         if(!completed){
             if(dueDate){

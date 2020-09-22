@@ -42,24 +42,26 @@ class App extends React.Component{
           : 
             <>
             <Route exact path="/login"  render={(routeProps) => 
-              <div>
+              <div className="credentialsContainer">
+                <p>Log In to Create and View Your Tasks</p>
                 <LoginForm {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
-                <Link to="/signup"><button>Sign Up</button></Link>
+                <Link to="/signup"><button className="signUpBtn">Sign Up</button></Link>
               </div>
               }/>
 
             <Route exact path="/signup" render={(routeProps)=> 
-              <div>
+              <div className="credentialsContainer">
+                <p>Sign Up to Create Your Task List</p>
                 <SignupForm {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
-                <Link to="/login"><button>Log In</button></Link>
+                <Link to="/login"><button className="logInBtn">Log In</button></Link>
               </div>
              }/>
 
            
             <Route exact path="/" render={() => 
               <div>
-                <Link to="/signup"><button>Sign Up</button></Link>
-                <Link to="/login"><button>Log In</button></Link>
+                <Link to="/signup"><button className="signUpBtn">Sign Up</button></Link>
+                <Link to="/login"><button className="logInBtn">Log In</button></Link>
               </div>
             }/>
             </>}

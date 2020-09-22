@@ -77,16 +77,16 @@ class SignupForm extends React.Component {
         return(
             <div>
             {this.isErrorsEmpty(errors) ? ( 
-            <div id="signup-form">
+            <div className="signupForm">
                     <form onSubmit={event => this.handleOnSubmit(event)} className="pa2">
                         <input type="email" name="email_address" placeholder="Enter your Email Address" value={this.state.email_address} onChange={event => this.handleOnChange(event)}/>
-                        <br/>
+
                         <input type="text" name="username" placeholder="Choose a Username" value={this.state.username} onChange={event => this.handleOnChange(event)}/>
-                        <br/>
+
                         <input type="password" name="password" placeholder="Enter a Password" value={this.state.password} onChange={event => this.handleOnChange(event)}/>
-                        <br/>
+
                         <input type="password" name="password_confirmation" placeholder="Confirm Password" value={this.state.password_confirmation} onChange={event => this.handleOnChange(event)}/>
-                        <br/>
+
                         <input type="submit" value="Sign Up" className="ma1"/>
                     </form>
             </div>)
