@@ -1,5 +1,6 @@
 import React from 'react';
 import {BASE_URL} from '../constants.js'
+import { BrowserRouter as Switch, Route, Link } from 'react-router-dom';
 
 class LoginForm extends React.Component{
 
@@ -50,8 +51,15 @@ class LoginForm extends React.Component{
             })
         } else {
             alert("Please enter a username and password before attempting to log in.")
-        }
-        
+        }  
+    }
+
+    resetState = () => {
+        this.setState({
+            username: "",
+            password: "",
+            error: ""
+        })
     }
 
     render(){
@@ -59,7 +67,8 @@ class LoginForm extends React.Component{
         return(
             <>
             {error.length !== 0 ? 
-             <p> {error} </p> : 
+             <><p id="errorMessage"> {error} </p>
+             <Link to="/login" onClick={this.resetState}>Go back</Link> </>: 
              <div className="loginForm"> 
                 <form onSubmit={event => this.logInUser(event)}>
                     <input type="text" name="username" placeholder="Enter your Username" value={this.state.username} onChange={event => this.handleOnChange(event)}/>

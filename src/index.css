@@ -346,12 +346,14 @@ input.task-form {
 
 .errorHeadline{
   font-family: 'Orbitron', sans-serif;
-  font-size: 14px
+  font-size: 14px;
+  font-weight: 700
 }
 
-.errorMessage{
-  font-family: 'Orbitron', sans-serif;
-  font-size: 12px
+#errorMessage{
+  /* font-family: 'Orbitron', sans-serif; */
+  font-size: 14px;
+  font-weight: 400
 }
 .credentialsContainer{
   background: rgba(238, 231, 247, 0.438);

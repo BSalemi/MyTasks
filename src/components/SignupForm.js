@@ -61,7 +61,7 @@ class SignupForm extends React.Component {
         const {errors} = this.state;
         let messages = [];  
         for (let [error, msgs] of Object.entries(errors)) {
-          const messagesLis = msgs.map(m => (<li className="errorMessage">{m}</li>));
+          const messagesLis = msgs.map(m => (<li id="errorMessage">{m}</li>));
           messages.push(
             <>
               <p className="errorHeadline">{error.charAt(0).toUpperCase() + error.slice(1)}: </p>  

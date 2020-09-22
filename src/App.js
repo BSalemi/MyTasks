@@ -43,7 +43,7 @@ class App extends React.Component{
             <>
             <Route exact path="/login"  render={(routeProps) => 
               <div className="credentialsContainer">
-                <p>Log In to Create and View Your Tasks</p>
+                <p>Log In to View Your Tasks</p>
                 <LoginForm {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
                 <Link to="/signup"> Don't have an account? Create one here.</Link>
               </div>
