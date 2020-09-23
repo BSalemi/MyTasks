@@ -1,3 +1,5 @@
+![My Tasks Logo](https://i.imgur.com/o1PSkrO.png)
+
 # My Tasks
 
 My Tasks is a task list application where users can keep track of tasks they need to complete. My Tasks is built with a React front end and a Rails API back end. 
@@ -35,6 +37,8 @@ From here, users have a number of different options:
     * Those Without Deadlines
     * Those that are Completed
     * Those that are Overdue
+
+![My Tasks Homepage](https://i.imgur.com/u2z3AvT.png)
 
 ## Contribution
 

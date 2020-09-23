@@ -237,8 +237,7 @@ input.task-form {
 }
 
 .highlight-deadline{
-  text-shadow: 2px 2px white;
-  font-weight: bold 
+  color:yellow;
 }
 
 .tasks {
@@ -351,7 +350,6 @@ input.task-form {
 }
 
 #errorMessage{
-  /* font-family: 'Orbitron', sans-serif; */
   font-size: 14px;
   font-weight: 400
 }
@@ -373,6 +371,10 @@ input.task-form {
 .credentialsContainer > a {
   font-family: 'Orbitron', sans-serif;
   font-size: 14px
+}
+
+.noList {
+  list-style: none;
 }
 
 .goBackLink{

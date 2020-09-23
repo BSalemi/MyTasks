@@ -1,6 +1,6 @@
 import React from 'react';
 import {BASE_URL} from '../constants.js'
-import { BrowserRouter as Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Route, Link } from 'react-router-dom';
 
 class LoginForm extends React.Component{
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { USERS_URL } from '../constants.js'
-import { BrowserRouter as Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Route, Link } from 'react-router-dom';
 
 class SignupForm extends React.Component {
 
@@ -68,7 +68,7 @@ class SignupForm extends React.Component {
               {messagesLis}
             </>
           );
-        }  
+        }
         return messages;
     }
 
@@ -101,7 +101,7 @@ class SignupForm extends React.Component {
                         <input type="submit" value="Sign Up" className="ma1"/>
                     </form>
             </div>)
-            : <><ul> {this.generateErrors()}</ul>
+            : <><ul className="noList"> {this.generateErrors()}</ul>
             <Link to="/signup" onClick={this.resetState} className="goBackLink"> Go back</Link></>
             }
             </div>
