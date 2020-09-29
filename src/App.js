@@ -26,6 +26,13 @@ class App extends React.Component{
     })
   }
 
+  setIsClicked = () => {
+    this.setState({
+      isClicked: true
+    })
+  }
+
+
   render(){
     const { currentUserId, currentUserName, isClicked } = this.state;
   
@@ -73,10 +80,9 @@ class App extends React.Component{
         <div className="heading-text-box">
           <h1 className="heading-primary">
             <span className="heading-primary-main">My Tasks</span>
-            <span className="heading-primary-sub"></span>
           </h1>
 
-          <a href="#" className="bttn bttn-white bttn-animated" onClick={this.setIsClicked}></a>
+          <a href="#" className="bttn bttn-white bttn-animated" onClick={this.setIsClicked}>Get Your Tasks</a>
         </div>
       </div>}
       </>
