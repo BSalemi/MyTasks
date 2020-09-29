@@ -14,7 +14,8 @@ class App extends React.Component{
 
   state = {
     currentUserId: localStorage.loggedIn,
-    currentUserName: localStorage.user
+    currentUserName: localStorage.user,
+    isClicked: false
   }
 
   updateCurrentUser = (user) => {
@@ -26,9 +27,11 @@ class App extends React.Component{
   }
 
   render(){
-    const { currentUserId, currentUserName } = this.state;
+    const { currentUserId, currentUserName, isClicked } = this.state;
   
     return(
+      <>
+      {isClicked ? 
       <div id="app" className="tc">
 
         <h1 id="logo" className="f1"> My Tasks</h1>
@@ -39,7 +42,7 @@ class App extends React.Component{
             <Clock/>
             <TasksContainer currentUser={this.state.currentUserId} /> 
             </>
-          : 
+          :
             <>
             <Route exact path="/login"  render={(routeProps) => 
               <div className="credentialsContainer">
@@ -49,7 +52,7 @@ class App extends React.Component{
               </div>
               }/>
 
-            <Route exact path="/signup" render={(routeProps)=> 
+            <Route exact path="/signup" render={(routeProps)=>
               <div className="credentialsContainer">
                 <p>Sign Up to Create Your Task List</p>
                 <SignupForm {...routeProps} updateCurrentUser={this.updateCurrentUser}/>
@@ -57,15 +60,26 @@ class App extends React.Component{
               </div>
              }/>
 
-           
-            <Route exact path="/" render={() => 
+            <Route exact path="/" render={() =>
               <div>
                 <Link to="/signup"><button className="signUpBtn">Sign Up</button></Link>
                 <Link to="/login"><button className="logInBtn">Log In</button></Link>
               </div>
             }/>
             </>}
-      </div>
+      </div> :
+
+      <div className="cover-image">
+        <div className="heading-text-box">
+          <h1 className="heading-primary">
+            <span className="heading-primary-main"></span>
+            <span className="heading-primary-sub"></span>
+          </h1>
+
+          <a href="#" className="bttn bttn-white bttn-animated" onClick={this.setIsClicked}></a>
+        </div>
+      </div>}
+      </>
     )
   }
 }
