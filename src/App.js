@@ -72,7 +72,7 @@ class App extends React.Component{
       <div className="cover-image">
         <div className="heading-text-box">
           <h1 className="heading-primary">
-            <span className="heading-primary-main"></span>
+            <span className="heading-primary-main">My Tasks</span>
             <span className="heading-primary-sub"></span>
           </h1>
 

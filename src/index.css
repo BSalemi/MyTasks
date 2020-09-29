@@ -15,6 +15,51 @@ code {
 @import url('https://fonts.googleapis.com/css?family=Orbitron');
 
 
+.cover-image{
+  background-image:  url(./img/background.png);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  height: 100vh;
+  background-repeat: repeat-y;
+  background-repeat: repeat-x;
+  overflow: hidden
+}
+
+.heading-text-box{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center
+}
+
+.heading-primary{
+  color: rgb(164, 99, 242);
+  text-shadow: 1px 1px white;
+  text-transform: uppercase;
+  font-family: "Orbitron", sans-serif;
+  margin-bottom: 60px;
+  backface-visibility: hidden;
+}
+
+.heading-primary-main{
+  display: block;
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 35px;
+  animation: moveInLeft 1s ease-out
+}
+
+.heading-primary-sub{
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 17.4px;
+  font-family: 'Lato';
+}
+
+
 #clock {
   font-family: 'Orbitron', sans-serif;
   color: rgb(164, 99, 242);
@@ -41,7 +86,7 @@ code {
 
 
 .bg-dwyl-pink {
-  background-color: #f26394;
+  background-color: rgb(242, 99, 148);
 }
 
 .bg-dwyl-lime {
@@ -54,7 +99,7 @@ code {
 }
 
 .ba-b--lime{
-  border: 2px #63f26b outset;
+  border: 2px rgb(99, 242, 107) outset;
   cursor: pointer;
 }
 
@@ -189,6 +234,23 @@ code {
       border-width: 10px;
   }
 }
+
+@keyframes moveInLeft {
+  0% {
+      opacity: 0;
+      transform: translateX(-100px);
+  }
+
+  80% {
+      transform: translateX(10px);
+  }
+
+  100% {
+      opacity: 1;
+      transform: translate(0);
+  }
+}
+
 
 .task-form{
   max-width: 400px;
