@@ -1,4 +1,4 @@
-![My Tasks Logo](https://i.imgur.com/o1PSkrO.png)
+![My Tasks Logo](https://i.imgur.com/OF6fIs9.png)
 
 # My Tasks
 
