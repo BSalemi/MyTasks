@@ -507,3 +507,10 @@ input.task-form {
   font-family: 'Orbitron', sans-serif;
   font-size: 14px
 }
+
+.signUpBtn, .logInBtn{
+  border-radius: 25px;
+  padding: 10px 15px;
+  font-family: "Orbitron", sans-serif
+}
+

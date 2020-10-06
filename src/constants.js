@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:4001/"
+export const BASE_URL = "my-tasks-server.herokuapp.com/"
 
 export const USERS_URL = `${BASE_URL}/users`
 
