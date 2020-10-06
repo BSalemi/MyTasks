@@ -4,6 +4,12 @@
 
 My Tasks is a task list application where users can keep track of tasks they need to complete. My Tasks is built with a React front end and a Rails API back end. 
 
+My Tasks is hosted on Heroku and can be found [ here ](https://my-tasks-react.herokuapp.com). Please use the dummy data below to log in to My Tasks if you do not wish to sign up.
+
+<b>Username:</b> Test1234
+<br/>
+<b>Password:</b> Test1234
+
 
 ## Installation
 
